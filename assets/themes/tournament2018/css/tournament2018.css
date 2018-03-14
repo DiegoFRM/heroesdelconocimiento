@@ -41,7 +41,7 @@ body{
 }
 
 #container{
-    opacity: 1;
+    opacity: 0;
     width: 100%;
     height: 100%;
       resize: both;

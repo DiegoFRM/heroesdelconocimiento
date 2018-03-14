@@ -112,12 +112,15 @@ function abductionOptions(){
         obj4 = $(".abductionlight");  
     
         selectionQ.pause(0);
-        
+            $("#answer1").css("left","0%");
+            $("#answer2").css("left","25%");
+            $("#answer3").css("left","50%");
+            $("#answer4").css("left","75%");
    if(config.includeOptionsLetters){ 
        
         for(var i = 1;i<=config.NumberOptions;i++){
             //$("#answer" + i).pause(0);
-            TweenMax.fromTo($("#answer" + i),0.5,{scale:0},{scale:1,ease:Back.easeOut});
+            TweenMax.fromTo($("#answer" + i),0.5,{scale:0},{scale:1,delay:0.3 * i,ease:Back.easeOut});
         }     
     }
     
@@ -140,7 +143,7 @@ function showAnswerNext(){
 
 //APPLY BLUR IN CONTAINER
 var blurElement = {a:0};
-//TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
+TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
 function applyBlur(){
     TweenMax.set(['#container'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
 };
@@ -224,7 +227,7 @@ var images = new Array;
 	);*/
 
     var starsAnimation;
-        //starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
+        starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
     
     var shipAnimation = new TimelineMax();
 
@@ -250,4 +253,4 @@ function BeginQuestions(){
 	
 }
 
-//beginAnimationShip()
+beginAnimationShip()
