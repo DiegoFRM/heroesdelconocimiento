@@ -112,9 +112,12 @@ function abductionOptions(){
         obj4 = $(".abductionlight");  
     
         selectionQ.pause(0);
+        
    if(config.includeOptionsLetters){ 
+       
         for(var i = 1;i<=config.NumberOptions;i++){
-            TweenMax.fromTo($("#answer" + i),0.5,{scale:0},{scale:1,delay:0.3 * i,ease:Back.easeOut});
+            //$("#answer" + i).pause(0);
+            TweenMax.fromTo($("#answer" + i),0.5,{scale:0},{scale:1,ease:Back.easeOut});
         }     
     }
     
