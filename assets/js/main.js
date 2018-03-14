@@ -143,19 +143,20 @@
                 $("#answer" + a).find(".contentText").find("span").html(question[selectQuestion]["answer" + a] );
                 var limitCharacters = $("#answer" + a).find(".contentText").find("span")
                 
-                if(limitCharacters.text().length == 0){
+               /* if(limitCharacters.text().length == 0){
                     
                     $(".optionLetters").addClass("optionOnlyLetters");
                 }else if(limitCharacters.text().length < 5){
                     $(".optionLetters").removeClass("optionOnlyLetters");
-                    limitCharacters.css("font-size","2.5vw");
+                    limitCharacters.css("font-size","2vw");
                 }else if(limitCharacters.text().length > 6 && limitCharacters.text().length < 10){
-                    limitCharacters.css("font-size","1.8vw"); 
+                    limitCharacters.css("font-size","2vw"); 
                     $(".optionLetters").removeClass("optionOnlyLetters");
                 }else{
-                    limitCharacters.css("font-size","1.8vw");
+                    limitCharacters.css("font-size","2vw");
                     $(".optionLetters").removeClass("optionOnlyLetters");
                 }
+                */
                 
             }
             //Buttons
