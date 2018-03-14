@@ -137,7 +137,7 @@ function showAnswerNext(){
 
 //APPLY BLUR IN CONTAINER
 var blurElement = {a:0};
-TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
+//TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
 function applyBlur(){
     TweenMax.set(['#container'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
 };
@@ -221,7 +221,7 @@ var images = new Array;
 	);*/
 
     var starsAnimation;
-        starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
+        //starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
     
     var shipAnimation = new TimelineMax();
 
@@ -247,4 +247,4 @@ function BeginQuestions(){
 	
 }
 
-beginAnimationShip()
+//beginAnimationShip()
