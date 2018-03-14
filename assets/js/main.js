@@ -119,7 +119,7 @@
         $("#buttonForward").hide();
         //HARDCOREADA
         $("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
-        $(".section-gradeText").html('<span>' + question[counter].grade+' grado</span>')
+        $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')
         //FIN HARDCOREADA
         $("#question").find("span").html(question[selectQuestion].Question);  
         
