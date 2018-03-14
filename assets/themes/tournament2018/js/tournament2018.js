@@ -150,7 +150,6 @@ $("#beginTest").click(function(){
 });
 
 //INCLUDE GRADE **********
-$(".section-gradeText").append('<span>' + question[selectQuestion].grade+' grado</span>')
 
 $(".modal-title").append("<img src='assets/themes/default/images/yogome_logo.png'>")
 //LOAD INSTRUCTIONS
