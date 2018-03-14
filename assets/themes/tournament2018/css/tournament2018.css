@@ -260,7 +260,7 @@ body{
     color:#FFF;
     width: 100%;
     position: fixed;
-    top: 71%;
+    top: 75%;
     z-index: 1000;
 }
 
@@ -432,7 +432,7 @@ body{
     position: relative;
     left: 50%;
     text-align: center;
-    width: 70%;
+    width: 80%;
     transform: translate(-50%,0%);
     height: auto;
     color: #FFF;
@@ -454,7 +454,7 @@ body{
 }
 
 .ranuraimagen-img{
-    width: 60%;
+    width: 70%;
 }
 
 
