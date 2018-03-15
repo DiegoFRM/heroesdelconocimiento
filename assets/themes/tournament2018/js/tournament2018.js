@@ -96,18 +96,17 @@ function questionAnimation(selectQuestion){
     posCenter = $(".abductionlight img").css("left")  
     
     TweenMax.to(obj4, 0.5, {scaleX:0,delay:3.5});
-    selectionQ = TweenMax.to(answerSelect, 1.5, {position:"absolute",left:"50%", y:-250, delay:2,ease:Linear.easeNone,onComplete:abductionOptions});
-    //selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2.1 * 1,ease:Linear.easeNone,onComplete:abductionOptions});
+    selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2.1 * 1,ease:Linear.easeNone,onComplete:abductionOptions});
         
     
     
-  /*if(config.includeOptionsLetters){ 
+  if(config.includeOptionsLetters){ 
         for(var i = 1;i<=config.NumberOptions;i++){
             if( i != $("#" + selectQuestion).attr("index")){
             TweenMax.fromTo($("#answer" + i),0.5,{scale:1},{scale:0,delay:0.3 * i,ease:Back.easeIn});
             }
         }     
-    }*/
+    }
 
 }
 
