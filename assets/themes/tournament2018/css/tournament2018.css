@@ -551,15 +551,20 @@ body{
   and (orientation: portrait) {
       
 #question {
+    width: 100%;
+    font-size: 2.3em;    
 }      
       
 .ranuraimagen {
+    
 }      
 
 .ranuraimagen-img {
+    width: 90%;
 }    
       
 #imageQuestion img {
+    width: 100%;
 }      
 
 #eagle{
@@ -570,9 +575,10 @@ body{
     width: 50%;
     padding: 3vw;
     text-align: center;
-    transform: translate(-50%,-50%) !important;
+    transform: translate(-50%,-50%) scale(1.2)!important;
     left:26% !important;
-    font-size: 5vw;
+    font-size: 3vw;
+    
 }
  
 .optionLetters{
