@@ -268,7 +268,7 @@ body{
 .answer{
     position: relative;
     width: 25%;
-    left: 0% !important;
+    left: 0%;
     font-family: sans-serif;
     font-size: 1.8vw;
     font-weight: 500;

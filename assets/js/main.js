@@ -19,7 +19,7 @@
 
 
     var gradeSelection = 1;
-    var totalQuestions = 80;
+    var totalQuestions = question.length-1;
 
 //    for(var d = 0;d<= question.length-1 ; d++){
 //        if(question[d].grade == gradeSelection){
