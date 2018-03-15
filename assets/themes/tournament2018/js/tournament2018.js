@@ -92,9 +92,9 @@ function questionAnimation(selectQuestion){
     TweenMax.to(obj4, 1, {scaleX:1,delay:1});
     var answerSelect = $("#answer" + $("#" + selectQuestion).attr("index"));
     var posCenter = parseInt($(".abductionlight img").css("left") ) 
+    alert(posCenter);
     
-    
-    selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter, y:-250,scale:0, delay:2.1 * 1,ease:Linear.easeNone,onComplete:abductionOptions});
+    selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2.1 * 1,ease:Linear.easeNone,onComplete:abductionOptions});
         
     
     TweenMax.to(obj4, 0.5, {scaleX:0,delay:3.5});
