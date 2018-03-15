@@ -262,12 +262,13 @@ body{
     position: fixed;
     top: 75%;
     z-index: 1000;
+    left:27%;
 }
 
 .answer{
     position: relative;
     width: 25%;
-    left:25% !important;
+    left: 0% !important;
     font-family: sans-serif;
     font-size: 1.8vw;
     font-weight: 500;
@@ -571,6 +572,10 @@ body{
 
 #eagle{
 }
+      
+#answer-section{
+    left:0% !important;
+}      
       
 .answer{
     position: relative;
