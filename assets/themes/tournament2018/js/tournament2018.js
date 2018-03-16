@@ -93,11 +93,11 @@ function questionAnimation(selectQuestion){
     
     TweenMax.to(obj4, 1, {scaleX:1,delay:1});
     answerSelect = $("#answer" + $("#" + selectQuestion).attr("index"));
-    posCenter = $(".abductionlight img").css("left")  
+    posCenter = $(".abductionlight img").css("left")
     
     TweenMax.to(obj4, 0.5, {scaleX:0,delay:3.5});
     
-   selectionQ = TweenMax.to(answerSelect,1.5,{left:posCenter,top:-document.body.clientHeight/2 + "px",delay:2,onComplete:abductionOptions})
+   selectionQ = TweenMax.to(answerSelect,1,{alpha:0,left:posCenter,top:-document.body.clientHeight/2 + "px",scale:0, delay:2,onComplete:abductionOptions})
     
     //selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2,ease:Linear.easeNone,onComplete:abductionOptions});
         
@@ -106,7 +106,7 @@ function questionAnimation(selectQuestion){
   if(config.includeOptionsLetters){ 
         for(var i = 1;i<=config.NumberOptions;i++){
             if( i != $("#" + selectQuestion).attr("index")){
-            TweenMax.fromTo($("#answer" + i),0.5,{scale:1},{scale:0,delay:0.3 * i,ease:Back.easeIn});
+            TweenMax.fromTo($("#answer" + i),0.5,{scale:1},{scale:0,alpha:0,delay:0.3 * i,ease:Back.easeIn});
             }
         }     
     }
@@ -129,7 +129,7 @@ function abductionOptions(){
        
         for(var i = 1;i<=config.NumberOptions;i++){
             //$("#answer" + i).pause(0);
-            TweenMax.fromTo($("#answer" + i),0.5,{scale:0},{scale:1,delay:0.3 * i,ease:Back.easeOut});
+            TweenMax.fromTo($("#answer" + i),0.5,{scale:0,alpha:0},{scale:1,alpha:1,delay:0.3 * i,ease:Back.easeOut});
         }     
     }
     

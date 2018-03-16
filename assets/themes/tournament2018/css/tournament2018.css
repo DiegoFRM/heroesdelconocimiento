@@ -259,7 +259,7 @@ body{
     color:#FFF;
     width: 100%;
     position: fixed;
-    top: 75%;
+    top: 70%;
     z-index: 1000;
     left:2%;
 }
@@ -307,7 +307,7 @@ body{
     text-align: center;
     border:0.5vw solid rgb(127,71,221);
     box-shadow: 0 1vh 0 #37108d;
-    border-radius: 1vw;
+    border-radius: 2vw;
     height: 100%;
     min-height: 100px;
     z-index: 1;
@@ -368,7 +368,7 @@ body{
 
 .containerQuestionImage img{
     position: relative;
-    height: 100%;
+    height: 100% ;
 }
 
 
@@ -383,18 +383,6 @@ body{
 .select-button img{
 }
 
-
-
-#loadSpine{
-    position: absolute;
-    width:100%;
-    height:100%;
-    left: 0%;
-    top:0%;
-    border:0;
-    z-index: 0;
-    transform: scale(1) translate(0%, 0%);
-}
 
 #modal{
     position: absolute;
@@ -461,7 +449,7 @@ body{
     z-index: 10;
 }
 
-#imageQuestion img{
+#imageQuestion img {
     width: 80%;
 }
 
@@ -506,10 +494,6 @@ body{
     height: 55%;
     min-width: 1050px;
     transform: translate(0%,-73%) scale(1.5);
-}
-
-.posx20{
-    top:0% !important;
 }
 
 /*
@@ -583,8 +567,12 @@ body{
     width: 90%;
 }    
       
+#imageQuestion{
+    height: 100%;
+}      
+      
 #imageQuestion img {
-    width: 100%;
+    height:100%;
 }      
 
 #eagle{
@@ -601,7 +589,8 @@ body{
     width: 50%;
     padding: 3vw;
     text-align: center;
-    font-size: 3.5vw;   
+    font-size: 3.5vw;  
+    
     
 }
   
@@ -629,8 +618,8 @@ body{
 }
 
  #buttonForward {
-    transform: translate(-50%,8%);
-    width: 60%;
+    transform: translate(-50%,10%);
+    width: 50%;
 }      
       
 .optionLetters{
@@ -650,6 +639,32 @@ body{
     padding: 2vh;
     border-radius: 3vh 0vh 0vh 3vh;
     width: 15%;
+    transform: scale(1) !important;
 }
+      
+#ship{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:-100%;
+    text-align: center;
+    transform:scale(0.1);
+}
+
+#eagle{
+    height: 55%;
+    min-width: 1050px;
+    transform: translate(-20%,-73%) scale(1.5);
+}      
+      
+.answer .contentText{
+    background-color: rgb(30,0,108);
+    width: 60%;
+    border:1vw solid rgb(127,71,221);
+    border-radius: 3vw;
+    transform: scale(1.2) !important;
+}      
  
+      
+      
 }
