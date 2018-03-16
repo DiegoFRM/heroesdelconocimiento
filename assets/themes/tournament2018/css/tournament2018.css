@@ -243,7 +243,6 @@ body{
 
 .span-question{
     padding: 2vw;
-    
     position: relative;
 }
 
@@ -266,7 +265,7 @@ body{
 }
 
 .answer{
-    position: relative;
+    position: absolute;
     width: 25%;
     left: 0%;
     font-family: sans-serif;
@@ -279,6 +278,24 @@ body{
     justify-content: center; 
     cursor:pointer;
     }
+
+ 
+#answer1 {
+    left:0%;
+} 
+   
+#answer2 {
+    left:25%;
+}  
+   
+#answer3 {
+    left:50%;
+} 
+   
+#answer4 {
+    left:75%;
+}
+  
 
 .answer .contentText{
     background-color: rgb(30,0,108);
@@ -574,20 +591,48 @@ body{
 }
       
 #answer-section{
-    left:0% !important;
+    left:3%;
+    height: 25%;
+    
 }      
       
 .answer{
-    position: relative;
+    position: absolute;
     width: 50%;
     padding: 3vw;
     text-align: center;
-    transform: translate(-50%,-50%) scale(1.2);
-    left:26% !important;
-    font-size: 3.5vw;
+    font-size: 3.5vw;   
     
 }
- 
+  
+   
+#answer1 {
+    animation: animation1 1s forwards;
+    left:0%;
+} 
+   
+#answer2 {
+    animation: animation2 2s forwards;
+    left:50%;
+}  
+   
+#answer3 {
+    animation: animation1 1s forwards;
+    left:0%;
+    top:35%;
+} 
+   
+#answer4 {
+    animation: animation2 2s forwards;
+    left:50%;
+    top:35%;
+}
+
+ #buttonForward {
+    transform: translate(-50%,8%);
+    width: 60%;
+}      
+      
 .optionLetters{
     position: absolute;
     display: flex;

@@ -96,7 +96,10 @@ function questionAnimation(selectQuestion){
     posCenter = $(".abductionlight img").css("left")  
     
     TweenMax.to(obj4, 0.5, {scaleX:0,delay:3.5});
-    selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2.1 * 1,ease:Linear.easeNone,onComplete:abductionOptions});
+    
+   selectionQ = TweenMax.to(answerSelect,1.5,{left:posCenter,top:-document.body.clientHeight/2 + "px",delay:2,onComplete:abductionOptions})
+    
+    //selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2,ease:Linear.easeNone,onComplete:abductionOptions});
         
     
     
@@ -115,13 +118,13 @@ function abductionOptions(){
         obj2 = $("#imageQuestion"),
         obj3 = $("#imageQuestion").find("img"),
         obj4 = $(".abductionlight");  
-    
-        
-        selectionQ.pause(0);
+        $(answerSelect).removeAttr( 'style' );
+        /*
             $("#answer1").css("left","0%");
             $("#answer2").css("left","25%");
             $("#answer3").css("left","50%");
             $("#answer4").css("left","75%");
+        */
    if(config.includeOptionsLetters){ 
        
         for(var i = 1;i<=config.NumberOptions;i++){
