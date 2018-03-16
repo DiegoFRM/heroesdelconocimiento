@@ -88,7 +88,7 @@ function questionAnimation(selectQuestion){
         obj4 = $(".abductionlight");
     //TweenMax.to($("#canvasYogotar"),1,{y:-100} );
     AnimationQ =  TweenMax.to(obj1, 0.8, {height:"0px",delay:1});
-    AnimationI =  TweenMax.to([obj2], 0.8, {height:"0px",ease:Back.easeIn});
+    AnimationI =  TweenMax.to([obj2], 0.8, {alpha:0,ease:Back.easeIn});
     //TweenMax.to([obj2, obj3], 0, {alpha:0,delay:1});
     
     TweenMax.to(obj4, 1, {scaleX:1,delay:1});

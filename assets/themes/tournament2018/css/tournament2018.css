@@ -231,7 +231,7 @@ body{
 #question{
     width: 80%;
     color: #FFF;
-    font-size: 1.3em;
+    font-size: 1.8em;
     background-color: rgb(89,113,142);
     border:0.2vw solid rgb(114,171,211);
     border-radius: 0vw 0vw 1vw 1vw;
@@ -259,7 +259,7 @@ body{
     color:#FFF;
     width: 100%;
     position: fixed;
-    top: 70%;
+    top: 75%;
     z-index: 1000;
     left:2%;
 }
@@ -443,11 +443,12 @@ body{
     text-align: center;
     width: 80%;
     transform: translate(-50%,0%);
-    height: auto;
+    height: 500px;
     color: #FFF;
     text-align: center;
     margin-top: -1%;
     z-index: 10;
+    overflow: hidden;
 }
 
 #imageQuestion img {
@@ -580,7 +581,7 @@ body{
 }
       
 #answer-section{
-    left:3%;
+    left:5%;
     height: 30%;
     
 }      
@@ -629,16 +630,16 @@ body{
     justify-content: center;
     align-items: center;
     background-color: rgb(241,187,10);
-    border:0.5vw solid rgb(127,71,221);
+    border:1vw solid rgb(127,71,221);
     box-shadow: 0px 1vh 0px #37108d;
     height: 50%;
     color:#000;
     float: left;
-    left: 0%;
+    left: -3%;
     font-size: 4vw;
     font-weight: 500;
     padding: 2vh;
-    border-radius: 3vh 0vh 0vh 3vh;
+    border-radius: 1.5vh 0vh 0vh 1.5vh;
     width: 15%;
     transform: scale(1.3) !important;
 }
@@ -667,6 +668,71 @@ body{
     font-size: 0.7em;
 }      
  
+.header-bar{
+    height: 18%;
+}
+  
+.section-grade{
+    top:5%;
+    width: 50%;
+      }
       
+.section-gradeText {
+    font-size: 3.5vw;  
+      }
+      
+#counter-page{
+    position: absolute;
+    top:0%;
+    z-index: 1;
+    color:#FFF;
+    font-size: 6vw;
+    text-align: center;
+    left:10%;
+    height: 30%;
+    background: rgba(0,0,0,1);
+    width: 20%;
+    border-radius: 1.4vw; 
+    
+}
+
+#counter-page span{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transform: translate(0% ,-40%);
+    top:50%;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    padding: 0 2vw 0 1vw;
+       
+    z-index: 1;
+}
+
+
+#timerSection{
+    position: absolute;
+    top:0%;
+    z-index: 1;
+    color:#FFF;
+    font-size: 6vw;
+    text-align: center;
+    left:70%;
+    height: 30%;
+    background: rgba(0,0,0,1);
+    width: 20%;
+    border-radius: 1.4vw; 
+}      
+    
+.contentBar{
+    position: absolute;
+    width: 40%;
+    height: 3%;
+    top: 1%;
+    left:30%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1;
+}      
       
 }
