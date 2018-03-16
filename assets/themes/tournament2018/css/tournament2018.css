@@ -316,6 +316,7 @@ body{
     align-items: center;
     transform: translate(0%,0%);
     justify-content: center;  
+    font-size: 2vw;
 }
 
 .optionLetters{
@@ -450,7 +451,7 @@ body{
 }
 
 #imageQuestion img {
-    width: 80%;
+    width: 75%;
 }
 
 .ranuraimagen{
@@ -572,7 +573,7 @@ body{
 }      
       
 #imageQuestion img {
-    height:100%;
+    width:100%;
 }      
 
 #eagle{
@@ -580,7 +581,7 @@ body{
       
 #answer-section{
     left:3%;
-    height: 25%;
+    height: 30%;
     
 }      
       
@@ -633,13 +634,13 @@ body{
     height: 50%;
     color:#000;
     float: left;
-    left: 5%;
+    left: 0%;
     font-size: 4vw;
     font-weight: 500;
     padding: 2vh;
     border-radius: 3vh 0vh 0vh 3vh;
     width: 15%;
-    transform: scale(1) !important;
+    transform: scale(1.3) !important;
 }
       
 #ship{
@@ -662,7 +663,8 @@ body{
     width: 60%;
     border:1vw solid rgb(127,71,221);
     border-radius: 3vw;
-    transform: scale(1.2) !important;
+    transform: scale(1.4) !important;
+    font-size: 0.7em;
 }      
  
       
