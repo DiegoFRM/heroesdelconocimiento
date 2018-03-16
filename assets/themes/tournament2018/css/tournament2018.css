@@ -229,9 +229,9 @@ body{
 }
 
 #question{
-    width: 80%;
+    width: 100%;
     color: #FFF;
-    font-size: 1.8em;
+    font-size: 1.5em;
     background-color: rgb(89,113,142);
     border:0.2vw solid rgb(114,171,211);
     border-radius: 0vw 0vw 1vw 1vw;
@@ -558,23 +558,23 @@ body{
       
 #question {
     width: 100%;
-    font-size: 2.3em;    
+    font-size: 3em;    
 }      
       
 .ranuraimagen {
-    
+    width: 100%;
 }      
 
 .ranuraimagen-img {
-    width: 90%;
+    width: 100%;
 }    
       
 #imageQuestion{
-    height: 100%;
+    width: 100%;
 }      
       
 #imageQuestion img {
-    width:100%;
+    width:95%;
 }      
 
 #eagle{
@@ -582,8 +582,9 @@ body{
       
 #answer-section{
     left:5%;
-    height: 30%;
-    
+    height: 40%;
+    top:65%;
+
 }      
       
 .answer{
@@ -656,7 +657,7 @@ body{
 #eagle{
     height: 55%;
     min-width: 1050px;
-    transform: translate(-20%,-73%) scale(1.5);
+    transform: translate(-20%,-68%) scale(1.5);
 }      
       
 .answer .contentText{
@@ -669,11 +670,11 @@ body{
 }      
  
 .header-bar{
-    height: 18%;
+    height: 17%;
 }
   
 .section-grade{
-    top:5%;
+    top:3%;
     width: 50%;
       }
       
@@ -734,5 +735,19 @@ body{
     background-color: rgba(0,0,0,0.6);
     z-index: 1;
 }      
+    
+.buttonAudio{
+    width: 20%;
+    right: 0%;
+    top:4%;
+}
+
+
+.buttonHelp{
+    width: 20%;
+    top:4%;
+    right: 22%;
+}
+     
       
 }
