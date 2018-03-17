@@ -675,11 +675,11 @@ body{
   
 .section-grade{
     top:3%;
-    width: 50%;
+    width: 60%;
       }
       
 .section-gradeText {
-    font-size: 3.5vw;  
+    font-size: 5vw;  
       }
       
 #counter-page{
@@ -737,14 +737,14 @@ body{
 }      
     
 .buttonAudio{
-    width: 20%;
+    width: 18%;
     right: 0%;
     top:4%;
 }
 
 
 .buttonHelp{
-    width: 20%;
+    width: 18%;
     top:4%;
     right: 22%;
 }
