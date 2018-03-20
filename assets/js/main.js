@@ -33,7 +33,7 @@
     var confirmAnswer = true;
     var buttonSelect;
     var sesionSaveQuestion = new Array;
-    var counter = 72;
+    var counter = 0;
     //RANDOM FUNCTION
     function randomNumbers(max) {
         function range(upTo) {
