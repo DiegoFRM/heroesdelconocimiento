@@ -577,6 +577,10 @@ body{
    transform: translate(-160%,-8%); 
 }
 
+.globe-tutorial{
+    position: absolute;
+    background-color: #FFF;
+}
 
 /*COSMOS*/
 
