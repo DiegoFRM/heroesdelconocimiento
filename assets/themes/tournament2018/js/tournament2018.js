@@ -3,6 +3,7 @@ var timeInit;
 var centesimas = 0;
 var segundos = 0;
 var minutos = 0;
+var starsAnimation;
 var alertAnimation = TweenMax.fromTo($(".phase-clock"),1,{alpha:1},{alpha:0,yoyo:true,repeat:-1});
 var alertClock1 = {
     time:config.timeLimit/2,
@@ -152,7 +153,7 @@ function showAnswerNext(){
 
 //APPLY BLUR IN CONTAINER
 var blurElement = {a:0};
-TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
+//TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
 function applyBlur(){
     TweenMax.set(['#container'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
 };
@@ -162,6 +163,10 @@ $("#beginTest").click(function(){
     TweenMax.fromTo($("#begin-modal"),0.5,{scale:1},{scale:0,ease:Back.easeIn});
     TweenMax.fromTo($("#modal"),1,{alpha:1},{alpha:0,ease:Back.easeIn});
     TweenMax.to(blurElement, 1, {a:0, onUpdate:applyBlur,onComplete:initTimer});
+    beginAnimationShip();
+    starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
+    TweenMax.fromTo($(".modal-window"),0.5,{scale:0},{scale:1,ease:Back.easeOut})
+    $("#modal").css("opacity",1);
 });
 
 //INCLUDE GRADE **********
@@ -235,8 +240,7 @@ var images = new Array;
 		}
 	);*/
 
-    var starsAnimation;
-        starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
+
     
     var shipAnimation = new TimelineMax();
 
@@ -257,9 +261,15 @@ function NextShip(){
 
 function BeginQuestions(){
     $("#container").css("opacity",1);
-    TweenMax.fromTo($(".modal-window"),0.5,{scale:0},{scale:1,ease:Back.easeOut})
-    $("#modal").css("opacity",1);
 	
 }
 
-beginAnimationShip()
+function onlyQuestions(){
+    TweenMax.to($("#ship"),2,{top:"0%",scale:1,ease:Back.easeInOut});
+    $("#tutorialScreen").hide();
+    $("#container").css("opacity",1);
+    TweenMax.to($("#floor"),1,{top:"0%"});
+}
+
+
+onlyQuestions();
