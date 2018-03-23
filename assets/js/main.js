@@ -20,12 +20,20 @@
 
     var gradeSelection = 1;
     var totalQuestions = question.length-1;
+    //var totalQuestions = 0;
+    var questionGradeSelect = new Array;
 
-//    for(var d = 0;d<= question.length-1 ; d++){
-//        if(question[d].grade == gradeSelection){
-//            totalQuestions++;
-//        }
-//    }
+   /* for(var d = 0;d<= question.length-1 ; d++){
+        if(question[d].grade == gradeSelection){
+            totalQuestions++;
+        }
+    }
+*/
+
+
+    
+
+
 
     selectQuestion = 0;
 
@@ -88,10 +96,9 @@
         $(".answer").find(".optionLetters").removeClass("correct-button");
         $(".answer").find(".optionLetters").removeClass("select-button");
         saveAnswer(question[selectQuestion].Question,buttonSelect.id)
-        //$("#canvasYogotar")[0].contentWindow.yogotar.setAnimationByName(0, "WIN", true);
         if(counter == totalQuestions-1){
             console.log("completed");
-            resultsScene()
+            resultsScene();
             
         }else{
             counter++;
@@ -123,7 +130,7 @@
         $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')
         //FIN HARDCOREADA
         $("#question").find("span").html(question[selectQuestion].Question);  
-        
+        $(".type-questionSelect").text(question[selectQuestion].typeQuestion)
         if(question[selectQuestion].useImageQuestion){
             $(".ranuraimagen").css("opacity",1);
             TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});

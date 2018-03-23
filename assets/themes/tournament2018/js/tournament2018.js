@@ -13,6 +13,7 @@ var alertClock2 = {
     time:config.timeLimit,
     complete:false
 }
+
 function cronometro () {
 if (centesimas < 99) {
 		centesimas++;
@@ -218,6 +219,89 @@ $("#counter-page").find("span").html(1 + "/" + totalQuestions);
 
     
     //calculateNewScale();
+
+$("#page2").hide();
+$("#page3").hide();
+
+var counterTutorial = 1;
+
+$(".menuback-tutorial").click(function(){
+    if(counterTutorial == 2){       
+        $("#page2").hide();
+        $("#page1").show();
+        $(".menuback-tutorial").css("background-image","url('assets/themes/tournament2018/images/tutorial/prev-inactive.png')");
+        counterTutorial--;
+        $(".numberpage-tutorial").text("1/3");
+    }else if(counterTutorial == 3){
+        $("#page3").hide();
+        $("#page2").show();
+        counterTutorial--;
+        $(".numberpage-tutorial").text("2/3"); 
+        $(".menunext-tutorial").css("background-image","url('assets/themes/tournament2018/images/tutorial/next.png')");
+    }
+});
+
+$(".menunext-tutorial").click(function(){
+    if(counterTutorial == 1){       
+        $("#page1").hide();
+        $("#page2").show();
+        $(".menuback-tutorial").css("background-image","url('assets/themes/tournament2018/images/tutorial/prev.png')");
+        counterTutorial++;
+        $(".numberpage-tutorial").text("2/3");
+    }else if(counterTutorial == 2){
+        $("#page2").hide();
+        $("#page3").show();
+        counterTutorial++;
+        $(".numberpage-tutorial").text("3/3"); 
+        $(".menunext-tutorial").css("background-image","url('assets/themes/tournament2018/images/tutorial/next-inactive.png')");
+    }
+});
+
+    starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
+
+var elementsTutorial = [
+    $(".top-tutorial"),
+    $(".bottom-tutorial"),
+    $(".globe-tutorial"),
+    $(".eagle-tutorial"),
+    $(".title-tutorial")
+]
+
+var topTutorial,bottomTutorial,globeTutorial,titleTutorial,eagleTutorial
+
+$(".title-tutorial").css("opacity",0);
+$(".globe-tutorial").css("opacity",0);
+$(".eagle-tutorial").css("opacity",0);
+
+topTutorial = TweenMax.fromTo(elementsTutorial[0],1,{top:"-50%"},{top:"0%",delay:2})
+bottomTutorial = TweenMax.fromTo(elementsTutorial[1],1,{bottom:"-50%"},{bottom:"0%",delay:2,onComplete:nextTutorial1})
+
+function nextTutorial1(){
+    
+    titleTutorial = TweenMax.fromTo(elementsTutorial[4],1,{alpha:0,left:"-50%"},{alpha:1,left:"0%"})
+    elementsTutorial[3].css("opacity",1);
+    eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{left:"-50%"},{left:"0%",ease:Back.easeOut});
+    elementsTutorial[2].css("opacity",1);
+    globetutorial = TweenMax.fromTo(elementsTutorial[2],1,{left:"100%"},{left:"50%",ease:Back.easeOut});
+
+}
+
+
+$(".beginquiz-tutorial").click(function(){
+     titleTutorial = TweenMax.fromTo(elementsTutorial[4],1,{alpha:0,left:"0%"},{alpha:1,left:"-50%"});
+    globetutorial = TweenMax.to(elementsTutorial[2],1,{left:"130%",ease:Back.easeOut});
+    topTutorial = TweenMax.fromTo(elementsTutorial[0],2,{scale:1,top:"0%"},{scale:2,top:"-100%"})
+    bottomTutorial = TweenMax.fromTo(elementsTutorial[1],2,{scale:1,bottom:"0%"},{scale:2,bottom:"-100%"})
+    eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{scale:1,left:"0%"},{scale:2,left:"-100%",ease:Back.easeOut,onComplete:beginShip});
+
+});
+
+    
+function beginShip(){
+    beginAnimationShip();
+    
+}    
+
 var images = new Array;
     for(var c = 0;c<=72;c++){
         images[c] = "assets/themes/tournament2018/images/secuencia/ship-normal-idle_slow_"+c+".png";
@@ -260,15 +344,27 @@ function NextShip(){
 }
 
 function BeginQuestions(){
-    $("#container").css("opacity",1);
-	
+    $("#container").css("visibility","visible");
+    TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1,onComplete:explainBegin});
+    $("#cortainTutorial").css("visibility","visible");
+    TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1});
 }
 
+function explainBegin(){
+eagleTutorial = TweenMax.to(elementsTutorial[3],1,{scale:1,left:"0%"});    
+}
+
+
+
+
+/*ONLY REVIEW*/
 function onlyQuestions(){
     TweenMax.to($("#ship"),2,{top:"0%",scale:1,ease:Back.easeInOut});
     $("#tutorialScreen").hide();
     $("#container").css("opacity",1);
+    $("#container").css("visibility","visible");
     TweenMax.to($("#floor"),1,{top:"0%"});
+    starsAnimation.pause();
 }
 
 

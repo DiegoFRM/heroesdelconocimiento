@@ -41,7 +41,7 @@ body{
 }
 
 #container{
-    opacity: 0;
+    visibility:hidden;
     width: 100%;
     height: 100%;
       resize: both;
@@ -512,7 +512,7 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(250,250,250,0.8);
+    background-color: rgba(0,0,0,0.8);
     z-index: 10000;
     visibility: hidden;
 }
@@ -545,6 +545,12 @@ body{
     width: 100%;
 }
 
+.info-tutorial{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .eagle-tutorial{
     position: absolute;
     background-image: url(../images/tutorial/eagle.png);
@@ -554,8 +560,7 @@ body{
     width: 50%;
     height: 70%;
     bottom: 0%;
-    z-index: 1;
-    
+    z-index: 100000;    
 }
 .punto-tutorial,
 .panelButton-tutorial{
@@ -580,6 +585,83 @@ body{
 .globe-tutorial{
     position: absolute;
     background-color: #FFF;
+    width: 50%;
+    left:50%;
+    top:50%;
+    transform: translate(-10%,-50%);
+    border-radius: 2vw;
+    font-size: 1.3em;
+}
+
+.page-tutorial{
+    margin: 5%; 
+}
+
+.blue-text{
+    color:#2ec0d8;
+    text-align: center;
+}
+
+.green-text{
+    color:#90c628;
+    text-align: center;
+}
+
+.menuglobe-tutorial{
+    width: 100%;
+    text-align: center;
+}
+
+.menuback-tutorial{
+    position: absolute;
+    background-image: url("../images/tutorial/prev-inactive.png");
+    background-repeat: no-repeat;
+    background-position:95% 50%;
+    bottom: 0%;
+    height: 20%;
+    width: 45%;
+}
+
+.menunext-tutorial{
+    position: absolute;
+    background-image: url("../images/tutorial/next.png");
+    background-repeat: no-repeat;
+    
+    background-position:5% 50%;
+    bottom: 0%;
+    height: 20%;
+    left:55%;
+    width: 40%;
+}
+
+.numberpage-tutorial{
+    font-size: 3vw;
+}
+
+.beginquiz-tutorial{
+    background-image: url("../images/okbutton.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    
+}
+
+.beginquiz-tutorial:active{
+    background-image: url("../images/okbutton_off.png");
+}
+
+.type-questionSelect{
+    position: absolute;
+    font-size: 2vw;  
+    color:#FFF;
+    left:50%;
+    z-index: 1000;
+    top:10%;
+    opacity: 0.5;
+    transform: translate(-50%,-50%);
 }
 
 /*COSMOS*/
@@ -805,6 +887,8 @@ body{
 .section-gradeText {
     font-size: 5vw;  
       }
+      
+
       
 #counter-page{
     position: absolute;
