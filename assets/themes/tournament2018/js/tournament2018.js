@@ -4,6 +4,7 @@ var centesimas = 0;
 var segundos = 0;
 var minutos = 0;
 var starsAnimation;
+var soundQuestion = document.getElementById("soundQuestion");
 var alertAnimation = TweenMax.fromTo($(".phase-clock"),1,{alpha:1},{alpha:0,yoyo:true,repeat:-1});
 var alertClock1 = {
     time:config.timeLimit/2,
@@ -145,6 +146,7 @@ function abductionOptions(){
      
     
     loadQuestion();
+    
 }
 
 
@@ -365,6 +367,7 @@ function onlyQuestions(){
     $("#container").css("visibility","visible");
     TweenMax.to($("#floor"),1,{top:"0%"});
     starsAnimation.pause();
+    
 }
 
 

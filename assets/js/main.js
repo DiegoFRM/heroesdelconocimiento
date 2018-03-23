@@ -1,6 +1,7 @@
 /*DIEGO ROJAS 2018*/
     /*LOAD THEME*/
     //append THEME STYLE
+var soundQuestion = document.getElementById("soundQuestion");
    var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'assets/themes/' + config.theme +'/css/' + config.theme +'.css';
@@ -122,6 +123,17 @@
     //LOAD QUESTION
 
     function loadQuestion(){
+        $(".type-questionSelect").text(question[selectQuestion].typeQuestion + " " + question[selectQuestion].Level)
+        var languageSelect = "es";
+        var typeQuestion
+        console.log(question[selectQuestion].typeQuestion)
+        if(question[selectQuestion].typeQuestion == "Practica"){
+            typeQuestion = "e0";
+        }
+        var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
+        
+        soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3"
+        soundQuestion.play();
         
         $("#retro").hide();
         $("#buttonForward").hide();
@@ -130,7 +142,7 @@
         $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')
         //FIN HARDCOREADA
         $("#question").find("span").html(question[selectQuestion].Question);  
-        $(".type-questionSelect").text(question[selectQuestion].typeQuestion)
+        
         if(question[selectQuestion].useImageQuestion){
             $(".ranuraimagen").css("opacity",1);
             TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
