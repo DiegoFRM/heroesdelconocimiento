@@ -67,6 +67,7 @@ body{
     bottom: -20%;
     transform: translate(-50%,-2%); 
         z-index: 1001;
+    cursor: pointer;
     
 }
 
@@ -187,11 +188,10 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1;
+    cursor: pointer;
 }
 
-.buttonAudio:active{
-    background-image: url("../images/SoundOff.png");
-}
+
 
 .buttonHelp{
     position: absolute;
@@ -829,6 +829,7 @@ body{
  #buttonForward {
     transform: translate(-50%,10%);
     width: 50%;
+     cursor: pointer;
 }      
       
 .optionLetters{

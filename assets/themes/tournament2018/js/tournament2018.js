@@ -97,6 +97,7 @@ function questionAnimation(selectQuestion){
     TweenMax.to(obj4, 1, {scaleX:1,delay:1});
     answerSelect = $("#answer" + $("#" + selectQuestion).attr("index"));
     posCenter = $(".abductionlight img").css("left")
+    abdutionSound.play();
     
     TweenMax.to(obj4, 0.5, {scaleX:0,delay:3.5});
     
