@@ -338,6 +338,8 @@ var images = new Array;
         TweenMax.to($("#ship"),1,{left:"20%",delay:3});
         TweenMax.to($("#ship"),1,{left:"0%", top:"50%",ease:Back.easeIn,delay:4});
         TweenMax.to($("#floor"),1,{top:"0%", delay:4,onComplete:NextShip});  
+        
+
     }
 
 function NextShip(){
@@ -346,11 +348,14 @@ function NextShip(){
    
 }
 
+
 function BeginQuestions(){
     $("#container").css("visibility","visible");
-    TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1,onComplete:explainBegin});
-    $("#cortainTutorial").css("visibility","visible");
-    TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1});
+    TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1});
+        //LOAD FIRST QUESTION
+    loadQuestion();
+    //$("#cortainTutorial").css("visibility","visible");
+    //TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1});
 }
 
 function explainBegin(){
@@ -372,4 +377,4 @@ function onlyQuestions(){
 }
 
 
-onlyQuestions();
+//onlyQuestions();

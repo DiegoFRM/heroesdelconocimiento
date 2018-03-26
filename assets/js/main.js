@@ -184,6 +184,11 @@ var abdutionSound = document.getElementById("abdutionSound");
             //Include Images or only answers
             if(question[selectQuestion].includeImages){
                 $("#answer" + a).find(".contentText").find("span").html('<div class="containerQuestionImage"><img src="assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion]["image" + a] + '.png" />'  + question[selectQuestion]["answer" + a]  +"</div>");
+                
+                $("#answer" + a).find(".containerQuestionImage").find("img").on("error", function(){
+                    $(this).attr('src', 'assets/images/EnProceso2.png');
+                });
+                
             }else{
                 
                 $("#answer" + a).find(".contentText").find("span").html(question[selectQuestion]["answer" + a] );
@@ -271,8 +276,7 @@ var abdutionSound = document.getElementById("abdutionSound");
     });
 
 
-    //LOAD FIRST QUESTION
-    loadQuestion();
+
 
 
 
