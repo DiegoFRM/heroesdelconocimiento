@@ -362,7 +362,7 @@ function BeginQuestions(){
         //LOAD FIRST QUESTION
     loadQuestion();
     //$("#cortainTutorial").css("visibility","visible");
-    //TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1});
+    //TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1,onComplete:explainBegin});
 }
 
 function explainBegin(){
