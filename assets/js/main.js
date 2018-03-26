@@ -135,14 +135,26 @@ var abdutionSound = document.getElementById("abdutionSound");
         var languageSelect = "es";
         var typeQuestion
         console.log(question[selectQuestion].typeQuestion)
-        if(question[selectQuestion].typeQuestion == "Practica"){
-            typeQuestion = "e0";
+        if(question[selectQuestion].audio){
+            if(question[selectQuestion].typeQuestion == "Practica"){
+                if(question[selectQuestion].Level == 1){
+                   typeQuestion = "e0"; 
+                }else{
+                    typeQuestion = "e1"; 
+                }
+            
+            }else if(question[selectQuestion].typeQuestion == "Torneo"){
+            typeQuestion = "t1";     
+            }  
         }
-        var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
         
-        soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3"
-        soundQuestion.play();
-        
+        if(question[selectQuestion].audio){         
+            var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
+            console.log(typeQuestion);
+
+            soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3"
+            soundQuestion.play();
+        }
         $("#retro").hide();
         $("#buttonForward").hide();
         //HARDCOREADA
@@ -155,6 +167,12 @@ var abdutionSound = document.getElementById("abdutionSound");
             $(".ranuraimagen").css("opacity",1);
             TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
            $("#imageQuestion").find("img").attr('src','assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion].imageQuestion + '.png');
+            
+            
+                $("#imageQuestion").on("error", function(){
+                    $(this).attr('src', 'assets/images/EnProceso.png');
+                });
+            
            }else{
                 $(".ranuraimagen").css("opacity",0);
                $("#imageQuestion").find("img").attr('src','assets/images/' +  'blank.png');
