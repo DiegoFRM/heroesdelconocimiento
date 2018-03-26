@@ -5,6 +5,7 @@ var segundos = 0;
 var minutos = 0;
 var starsAnimation;
 var soundQuestion = document.getElementById("soundQuestion");
+var bgm = document.getElementById("bgm");
 var alertAnimation = TweenMax.fromTo($(".phase-clock"),1,{alpha:1},{alpha:0,yoyo:true,repeat:-1});
 var alertClock1 = {
     time:config.timeLimit/2,
@@ -330,6 +331,8 @@ var images = new Array;
 
     
     var shipAnimation = new TimelineMax();
+    bgm.play();
+    bgm.loop = true;
 
     function beginAnimationShip(){
         //shipAnimation.call(function() {$('#ship').addClass("posx20");}, null, null, 2);
@@ -344,8 +347,7 @@ var images = new Array;
 
 function NextShip(){
     starsAnimation.pause();
-     TweenMax.to($("#ship"),2,{top:"0%",scale:1,ease:Back.easeInOut,onComplete:BeginQuestions});
-   
+     TweenMax.to($("#ship"),2,{top:"0%",scale:1,ease:Back.easeInOut,onComplete:BeginQuestions});   $("#bgm").animate({volume: 0.1}, 1000);
 }
 
 

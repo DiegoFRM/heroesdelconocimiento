@@ -258,7 +258,7 @@ var abdutionSound = document.getElementById("abdutionSound");
             }else{
                 nextQuestion();
             }
-        });
+    });
 
 
     
