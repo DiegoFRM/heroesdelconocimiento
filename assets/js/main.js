@@ -169,7 +169,7 @@ var abdutionSound = document.getElementById("abdutionSound");
            $("#imageQuestion").find("img").attr('src','assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion].imageQuestion + '.png');
             
             
-                $("#imageQuestion").on("error", function(){
+                $("#imageQuestion").find("img").on("error", function(){
                     $(this).attr('src', 'assets/images/EnProceso.png');
                 });
             
