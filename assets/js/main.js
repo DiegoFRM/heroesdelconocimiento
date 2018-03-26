@@ -9,6 +9,8 @@ var soundQuestion = document.getElementById("soundQuestion");
 var popSound = document.getElementById("popSound");
 var magicSound = document.getElementById("magicSound");
 var abdutionSound = document.getElementById("abdutionSound");
+var bgm = document.getElementById("bgm");
+
 
    var link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -152,8 +154,10 @@ var abdutionSound = document.getElementById("abdutionSound");
             var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
             console.log(typeQuestion);
 
-            soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3"
+            soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3";
+            soundQuestion.volume = 1;
             soundQuestion.play();
+            
         }
         $("#retro").hide();
         $("#buttonForward").hide();
@@ -267,10 +271,12 @@ var abdutionSound = document.getElementById("abdutionSound");
            soundQuestion.volume = 0; 
             $(this).css("background-image", 'url("assets/themes/tournament2018/images/SoundOff.png")');
             soundActive = false;
+            bgm.volumen = 0;
         }else{
             soundQuestion.volume = 1;
             $(this).css("background-image", 'url("assets/themes/tournament2018/images/SoundOn.png")');
             soundActive = true;
+            bgm.volumen = 0;
         }
         
     });
