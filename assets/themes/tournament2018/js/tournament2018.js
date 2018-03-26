@@ -230,6 +230,7 @@ $("#page3").hide();
 var counterTutorial = 1;
 
 $(".menuback-tutorial").click(function(){
+        popSound.play();
     if(counterTutorial == 2){       
         $("#page2").hide();
         $("#page1").show();
@@ -237,6 +238,7 @@ $(".menuback-tutorial").click(function(){
         counterTutorial--;
         $(".numberpage-tutorial").text("1/3");
     }else if(counterTutorial == 3){
+        
         $("#page3").hide();
         $("#page2").show();
         counterTutorial--;
@@ -246,6 +248,7 @@ $(".menuback-tutorial").click(function(){
 });
 
 $(".menunext-tutorial").click(function(){
+    popSound.play();
     if(counterTutorial == 1){       
         $("#page1").hide();
         $("#page2").show();
@@ -287,6 +290,7 @@ function nextTutorial1(){
     eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{left:"-50%"},{left:"0%",ease:Back.easeOut});
     elementsTutorial[2].css("opacity",1);
     globetutorial = TweenMax.fromTo(elementsTutorial[2],1,{left:"100%"},{left:"50%",ease:Back.easeOut});
+    
 
 }
 
@@ -297,6 +301,7 @@ $(".beginquiz-tutorial").click(function(){
     topTutorial = TweenMax.fromTo(elementsTutorial[0],2,{scale:1,top:"0%"},{scale:2,top:"-100%"})
     bottomTutorial = TweenMax.fromTo(elementsTutorial[1],2,{scale:1,bottom:"0%"},{scale:2,bottom:"-100%"})
     eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{scale:1,left:"0%"},{scale:2,left:"-100%",ease:Back.easeOut,onComplete:beginShip});
+    magicSound.play();
 
 });
 
@@ -307,15 +312,15 @@ function beginShip(){
 }    
 
 var images = new Array;
-    for(var c = 0;c<=72;c++){
-        images[c] = "assets/themes/tournament2018/images/secuencia/ship-normal-idle_slow_"+c+".png";
+    for(var c = 0;c<=20;c++){
+        images[c] = "assets/themes/tournament2018/images/secuencia/ship-normal-idle_slow_v2_"+c+".png";
     }
 
 
 	// TweenMax can tween any property of any object. We use this object to cycle through the array
 	var obj = {curImg: 0};
 	// create tween
-	/*var tween = TweenMax.to(obj, 3.5,
+	var tween = TweenMax.to(obj, 3,
 		{
 			curImg: images.length - 1,	// animate propery curImg to number of images
 			roundProps: "curImg",				// only integers so it can be used as an array index
@@ -326,7 +331,7 @@ var images = new Array;
 			  $("#eagle").attr("src", images[obj.curImg]); // set the image source
 			}
 		}
-	);*/
+	);
 
 
     

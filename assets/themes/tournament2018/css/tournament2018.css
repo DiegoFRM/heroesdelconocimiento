@@ -620,6 +620,7 @@ body{
     bottom: 0%;
     height: 20%;
     width: 45%;
+    cursor: pointer;
 }
 
 .menunext-tutorial{
@@ -632,6 +633,7 @@ body{
     height: 20%;
     left:55%;
     width: 40%;
+    cursor: pointer;
 }
 
 .numberpage-tutorial{
@@ -646,6 +648,7 @@ body{
     position: relative;
     width: 100%;
     height: 10vh;
+    cursor: pointer;
     
 }
 
