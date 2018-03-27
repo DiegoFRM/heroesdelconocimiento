@@ -590,7 +590,47 @@ body{
     top:50%;
     transform: translate(-10%,-50%);
     border-radius: 2vw;
+    font-size: 1.3em; 
+}
+
+.page-explain{
+    position: absolute;
+    background-color: #FFF;
+    padding: 2vw;
+    border-radius: 1vw;
+    left:50%;
+    top:50%;
+    transform: translate(0%,-50%);
+    font-size: 2vw;   
+}
+
+#globeExplain{
+    position: absolute;
+    width: 100%;
+    height: 100%;
     font-size: 1.3em;
+    z-index: 100000;
+}
+
+.menuExplain{
+    position: absolute;
+    color:#FFF;
+    width: 20%;
+    right: 0;
+    top:50%;
+    transform: translate(0%,-50%);
+}
+
+
+#arrowExplain{
+    position: absolute;
+}
+
+.menuExplain div{
+    padding: 1vw;
+    display: flex;
+    justify-content:space-around;
+    align-items:flex-start;
 }
 
 .page-tutorial{

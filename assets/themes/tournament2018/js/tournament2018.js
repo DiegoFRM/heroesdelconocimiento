@@ -271,13 +271,17 @@ var elementsTutorial = [
     $(".globe-tutorial"),
     $(".eagle-tutorial"),
     $(".title-tutorial")
+    
 ]
+
+
 
 var topTutorial,bottomTutorial,globeTutorial,titleTutorial,eagleTutorial
 
 $(".title-tutorial").css("opacity",0);
 $(".globe-tutorial").css("opacity",0);
 $(".eagle-tutorial").css("opacity",0);
+$("#globeExplain").hide();
 
 topTutorial = TweenMax.fromTo(elementsTutorial[0],1,{top:"-50%"},{top:"0%",delay:2})
 bottomTutorial = TweenMax.fromTo(elementsTutorial[1],1,{bottom:"-50%"},{bottom:"0%",delay:2,onComplete:nextTutorial1})
@@ -358,30 +362,77 @@ function NextShip(){
 
 function BeginQuestions(){
     $("#container").css("visibility","visible");
-    TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1});
+    TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1,onComplete:explainBegin});
         //LOAD FIRST QUESTION
     loadQuestion();
-    //$("#cortainTutorial").css("visibility","visible");
-    //TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1,onComplete:explainBegin});
 }
 
 function explainBegin(){
-eagleTutorial = TweenMax.to(elementsTutorial[3],1,{scale:1,left:"0%"});    
+
+    $("#cortainTutorial").css("visibility","visible");
+    TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1});    
+    $("#globeExplain").show();
+    eagleTutorial = TweenMax.to(elementsTutorial[3],1,{scale:1});  
+   TweenMax.fromTo($("#globeExplain"),1,{alpha:0},{alpha:1});  
+    stepsTutorialFX()
+}
+
+var objectsTutorial = 
+    [
+        $(".section-grade"),
+        $("#counter-page"),
+        $(".contentBar"),
+        $("#timerSection"),
+        $(".buttonHelp"),
+        $(".buttonAudio"),
+        $("#question"),
+        $("#imageQuestion"),
+        $("#answer-section")
+    ]
+
+var textsTutorial = 
+    [
+    "Aquí verás tu grado escolar.",
+    "En este recuadro verás en qué número de pregunta vas y cuántas son en total.",
+    "Esta es la barra de progreso y se irá llenando a medida que avances en la prueba.",
+    "Aquí se indica cuánto tiempo te queda para terminar la prueba.",
+    "Si tienes alguna duda durante la etapa de prácticas, presiona este botón. Aquí encontrarás una guía para las pregunta más complicadas.",
+    "Si eres un héroe de primero o segundo de primaria, podrás escuchar las preguntas con este botón.", 
+    "Aquí aparecerá la pregunta que debes resolver. Asegúrate de leerla toda antes de contestar.",
+    "Si la pregunta tiene imágenes, aparecerán en esta sección.",
+    "Aquí aparecerán las cuatro respuestas posibles, solo una es la correcta.",
+    "Es muy importante que selecciones una respuesta para que se active el botón OK y puedas avanzar."    
+]
+
+var stepTutorial = 0;
+function stepsTutorialFX(){
+    for(i= 0;i<=objectsTutorial.length-1;i++){
+        console.log(objectsTutorial[i])
+        objectsTutorial[i].css("z-index",1);
+    }
+    objectsTutorial[stepTutorial].css("z-index",10000); 
 }
 
 
+$("#nextExplainButton").click(function(){
+    stepTutorial++
+    stepsTutorialFX()
+});
 
 
 /*ONLY REVIEW*/
 function onlyQuestions(){
+    bgm.volume = 0;
     TweenMax.to($("#ship"),2,{top:"0%",scale:1,ease:Back.easeInOut});
     $("#tutorialScreen").hide();
     $("#container").css("opacity",1);
     $("#container").css("visibility","visible");
     TweenMax.to($("#floor"),1,{top:"0%"});
     starsAnimation.pause();
-    
+    explainBegin()
+        loadQuestion();
+
 }
 
 
-//onlyQuestions();
+onlyQuestions();
