@@ -160,7 +160,6 @@ var bgm = document.getElementById("bgm");
             
         }
         $("#retro").hide();
-        $("#buttonForward").hide();
         //HARDCOREADA
         $("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
         $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')

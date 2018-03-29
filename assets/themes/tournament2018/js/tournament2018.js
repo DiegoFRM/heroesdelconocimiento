@@ -368,12 +368,12 @@ function BeginQuestions(){
 }
 
 function explainBegin(){
-
+    //$("#buttonForward").hide();
     $("#cortainTutorial").css("visibility","visible");
-    TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:0},{alpha:1});    
     $("#globeExplain").show();
     eagleTutorial = TweenMax.to(elementsTutorial[3],1,{scale:1});  
-   TweenMax.fromTo($("#globeExplain"),1,{alpha:0},{alpha:1});  
+   TweenMax.fromTo($("#globeExplain"),1,{alpha:0},{alpha:1});    
+   TweenMax.to($("#buttonForward"),0.5,{bottom:"-12%"});
     stepsTutorialFX()
 }
 
@@ -387,7 +387,8 @@ var objectsTutorial =
         $(".buttonAudio"),
         $("#question"),
         $("#imageQuestion"),
-        $("#answer-section")
+        $("#answer-section"),
+        $("#buttonForward")
     ]
 
 var textsTutorial = 
@@ -406,18 +407,36 @@ var textsTutorial =
 
 var stepTutorial = 0;
 function stepsTutorialFX(){
-    for(i= 0;i<=objectsTutorial.length-1;i++){
-        console.log(objectsTutorial[i])
-        objectsTutorial[i].css("z-index",1);
+    if(stepTutorial != objectsTutorial.length){
+        for(i= 0;i<=objectsTutorial.length-1;i++){
+            objectsTutorial[i].css("z-index",1);
+        }
+        objectsTutorial[stepTutorial].css("z-index",10000); 
+        $("#pageExplain").find("p").text(textsTutorial[stepTutorial])
+
+        stepTutorial++
+    }else{
+        $("#globeExplain").hide();
+        TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
+        TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});
     }
-    objectsTutorial[stepTutorial].css("z-index",10000); 
+    
+    if(stepTutorial == 8){
+        $("#pageExplain").css("top","20%");
+    }else{
+        $("#pageExplain").css("top","50%");
+    }    
 }
 
 
 $("#nextExplainButton").click(function(){
-    stepTutorial++
     stepsTutorialFX()
 });
+
+function startQuiz(){
+    $("#cortainTutorial").hide();
+    
+}
 
 
 /*ONLY REVIEW*/
@@ -431,8 +450,8 @@ function onlyQuestions(){
     starsAnimation.pause();
     explainBegin()
         loadQuestion();
-
+    
 }
 
 
-onlyQuestions();
+//onlyQuestions();

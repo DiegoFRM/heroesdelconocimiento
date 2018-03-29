@@ -66,7 +66,7 @@ body{
     left: 50%;
     bottom: -20%;
     transform: translate(-50%,-2%); 
-        z-index: 1001;
+    z-index: 1001;
     cursor: pointer;
     
 }
@@ -598,10 +598,11 @@ body{
     background-color: #FFF;
     padding: 2vw;
     border-radius: 1vw;
-    left:50%;
+    left:40%;
     top:50%;
     transform: translate(0%,-50%);
     font-size: 2vw;   
+    width: 40%;
 }
 
 #globeExplain{
