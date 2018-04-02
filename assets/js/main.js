@@ -155,7 +155,7 @@ var bgm = document.getElementById("bgm");
             console.log(typeQuestion);
 
             soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3";
-            soundQuestion.volume = 1;
+            //soundQuestion.volume = 1;
             soundQuestion.play();
             
         }

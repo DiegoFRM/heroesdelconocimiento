@@ -104,9 +104,7 @@ function questionAnimation(selectQuestion){
    selectionQ = TweenMax.to(answerSelect,1,{alpha:0,left:posCenter,top:-document.body.clientHeight/2 + "px",scale:0, delay:2,onComplete:abductionOptions})
     
     //selectionQ = TweenMax.to(answerSelect, 1.5, {left:posCenter + "px", y:-250,scale:0, delay:2,ease:Linear.easeNone,onComplete:abductionOptions});
-        
-    
-    
+
   if(config.includeOptionsLetters){ 
         for(var i = 1;i<=config.NumberOptions;i++){
             if( i != $("#" + selectQuestion).attr("index")){
@@ -144,8 +142,6 @@ function abductionOptions(){
     function showImage(){
        AnimationI.reverse();   
     }
-     
-    
     loadQuestion();
     
 }
@@ -365,13 +361,16 @@ function BeginQuestions(){
     TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1,onComplete:explainBegin});
         //LOAD FIRST QUESTION
     loadQuestion();
+    
+        soundQuestion.pause();
+        soundQuestion.currentTime = 0;
 }
 
 function explainBegin(){
     //$("#buttonForward").hide();
     $("#cortainTutorial").css("visibility","visible");
     $("#globeExplain").show();
-    eagleTutorial = TweenMax.to(elementsTutorial[3],1,{scale:1});  
+   TweenMax.to($("#globeExplain").find(".eagle-tutorial"),1,{left:"0%",scale:1});  
    TweenMax.fromTo($("#globeExplain"),1,{alpha:0},{alpha:1});    
    TweenMax.to($("#buttonForward"),0.5,{bottom:"-12%"});
     stepsTutorialFX()
@@ -419,6 +418,7 @@ function stepsTutorialFX(){
         $("#globeExplain").hide();
         TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
         TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});
+        soundQuestion.play();
     }
     
     if(stepTutorial == 8){
@@ -431,6 +431,15 @@ function stepsTutorialFX(){
 
 $("#nextExplainButton").click(function(){
     stepsTutorialFX()
+    popSound.play();
+});
+
+$("#jumpExplainButton").click(function(){
+    popSound.play();
+        $("#globeExplain").hide();
+        TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
+        TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});    
+    soundQuestion.play();
 });
 
 function startQuiz(){
