@@ -15,7 +15,7 @@ var buttonSelect;
 var sesionSaveQuestion = new Array;
 var counter = 0;
 var gradeSelection = 1;
-var totalQuestions = preguntas.length;
+var totalQuestions = question.length;
 var questionGradeSelect = new Array;
 //TIMER****************
 var timeInit;
@@ -44,29 +44,44 @@ var posCenter;
 
 
     //LOAD QUESTION
-    function loadQuestion(){
-        $(".type-questionSelect").text("Etapa: " + etapa + ", image Name:" + question[selectQuestion].imageQuestion)
-        
+   function loadQuestion(){
+        $(".type-questionSelect").text(question[selectQuestion].typeQuestion + " " + question[selectQuestion].Level)
         var languageSelect = "es";
         var typeQuestion
+        console.log(question[selectQuestion].typeQuestion)
+        if(question[selectQuestion].audio){
+            if(question[selectQuestion].typeQuestion == "Practica"){
+                if(question[selectQuestion].Level == 1){
+                   typeQuestion = "e0"; 
+                }else{
+                    typeQuestion = "e1"; 
+                }
+            
+            }else if(question[selectQuestion].typeQuestion == "Torneo"){
+            typeQuestion = "t1";     
+            }  
+        }
         
+        if(question[selectQuestion].audio){         
+            var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
+            console.log(typeQuestion);
 
-        if(preguntas[selectQuestion].audio){         
-            var soundSelect = "q" + preguntas[selectQuestion].orden +  "_" + "g" + grado + "_e" + etapa + "_" + languageSelect;
-            soundQuestion.src = "assets/sounds/" + preguntas[selectQuestion].audio;
+            soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3";
+            //soundQuestion.volume = 1;
             soundQuestion.play();
             
         }
-        
         $("#retro").hide();
+        //HARDCOREADA
         $("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
-        $(".section-gradeText").html('<span>' + grado +'° grado</span>')
-        $("#question").find("span").html(preguntas[selectQuestion].descripcion);  
+        $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')
+        //FIN HARDCOREADA
+        $("#question").find("span").html(question[selectQuestion].Question);  
         
-        if(preguntas[selectQuestion].imagen){
+        if(question[selectQuestion].useImageQuestion){
             $(".ranuraimagen").css("opacity",1);
             TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
-           $("#imageQuestion").find("img").attr('src','assets/images/grade'+grado +'/' + preguntas[selectQuestion].imagen);
+           $("#imageQuestion").find("img").attr('src','assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion].imageQuestion + '.png');
             
             
                 $("#imageQuestion").find("img").on("error", function(){
@@ -81,9 +96,9 @@ var posCenter;
         
         for(var a= 1;a<=4;a++){
             $("#answer" + a).attr("index",a);
-            console.log(preguntas[selectQuestion].respuestas[a-1].imagen)
-            if(preguntas[selectQuestion].respuestas[a-1].imagen){
-                $("#answer" + a).find(".contentText").find("span").html('<div class="containerQuestionImage"><img src="assets/images/grade'+ grado +'/' + preguntas[selectQuestion].respuestas[a-1].imagen + '" />' + '</div>');
+            //Include Images or only answers
+            if(question[selectQuestion].includeImages){
+                $("#answer" + a).find(".contentText").find("span").html('<div class="containerQuestionImage"><img src="assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion]["image" + a] + '.png" />'  + question[selectQuestion]["answer" + a]  +"</div>");
                 
                 $("#answer" + a).find(".containerQuestionImage").find("img").on("error", function(){
                     $(this).attr('src', 'assets/images/EnProceso2.png');
@@ -91,7 +106,7 @@ var posCenter;
                 
             }else{
                 
-                $("#answer" + a).find(".contentText").find("span").html(preguntas[selectQuestion].respuestas[a-1].descripcion );
+                $("#answer" + a).find(".contentText").find("span").html(question[selectQuestion]["answer" + a] );
                 var limitCharacters = $("#answer" + a).find(".contentText").find("span")
                 
                /* if(limitCharacters.text().length == 0){
@@ -134,7 +149,9 @@ var posCenter;
 
             }); 
         }        
-    }    
+    }
+
+
 
     //NEXT QUESTION
     function nextQuestion(){
