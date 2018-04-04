@@ -1,32 +1,16 @@
-    var question = [
-        {
-            Number:1,
-            Question:"¿Quién de estos personajes es <b>Gokú</b>?",
-            answer1:"A)",
-            answer2:"B)",
-            answer3:"C)",
-            answer4:"D)",
-            includeImages:true,
-            image1:"1.jpg",
-            image2:"2.jpg",
-            image3:"3.jpg",
-            image4:"4.jpg",
-            Correct:[1],
-            Level:1
-        },
-        {
-            Number:2,
-            Question:"Esta es mi pregunta número 2",
-            answer1:"Q2: Respuesta 1",
-            answer2:"Q2: Respuesta 2",
-            answer3:"Q2: Respuesta 3",
-            answer4:"Q2: espuesta 4",
-            includeImages:false,
-            image1:"",
-            image2:"",
-            image3:"",
-            image4:"",            
-            Correct:[3],
-            Level:1
-        }
-    ];
+etapa:0
+grado:1
+preguntas:[
+	{
+		audio:"q1_g1_e0_es.mp3",
+		descripcion:"¿Cuál es la figura que se encuentra arriba a la derecha del triángulo?",
+		id:3,
+		imagen:"PrimerGrado_1.png",
+		orden:1,
+		respuestas:[
+			{imagen: "PrimerGrado_1R1.png", pregunta: 3, respuesta_id: 1}
+			{imagen: "PrimerGrado_1R2.png", pregunta: 3, respuesta_id: 2},
+			{imagen: "PrimerGrado_1R3.png", pregunta: 3, respuesta_id: 3},
+			{imagen: "PrimerGrado_1R4.png", pregunta: 3, respuesta_id: 4},
+		]
+	}

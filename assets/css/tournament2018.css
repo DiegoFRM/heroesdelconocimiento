@@ -698,12 +698,13 @@ body{
 }
 
 .type-questionSelect{
+    font-family:"Arial";
     position: absolute;
-    font-size: 2vw;  
+    font-size: 1.8vw;  
     color:#FFF;
     left:50%;
     z-index: 1000;
-    top:10%;
+    top:5%;
     opacity: 0.5;
     transform: translate(-50%,-50%);
 }
@@ -758,6 +759,20 @@ body{
 
 #nextExplainButton{
     cursor:pointer;
+}
+
+#particules{
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: 100000;
+    transform: translate(-50%,-50%);
+}
+
+.particuleStarClass{
+    position: absolute;
+    z-index: 100000;
+    transform: translate(-50%,-50%);
 }
 
 /*

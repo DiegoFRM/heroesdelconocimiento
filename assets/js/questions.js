@@ -1,3 +1,36 @@
+var etapa = 0
+var grado = 1
+var preguntas = [
+	{
+		audio:"q1_g1_e0_es.mp3",
+		descripcion:"¿Cuál es la figura que se encuentra arriba a la derecha del triángulo?",
+		id:1,
+		imagen:"PrimerGrado_1.png",
+		orden:1,
+		respuestas:[
+			{imagen: "PrimerGrado_1R1.png", pregunta: 1, respuesta_id: 1},
+			{imagen: "PrimerGrado_1R2.png", pregunta: 1, respuesta_id: 2},
+			{imagen: "PrimerGrado_1R3.png", pregunta: 1, respuesta_id: 3},
+			{imagen: "PrimerGrado_1R4.png", pregunta: 1, respuesta_id: 4}
+		]
+	},
+	{
+        audio:"q2_g1_e0_es.mp3",
+		descripcion:"Eagle tiene dos amigos, Nao y Oona. ¿Cuántos dedos en pies y manos tienen los tres amigos en total?",
+		id:2,
+		orden:1,
+		respuestas:[
+			{descripcion:"20",pregunta: 2, respuesta_id: 1},
+			{descripcion:"30",pregunta: 2, respuesta_id: 2},
+			{descripcion:"40",pregunta: 2, respuesta_id: 3},
+			{descripcion:"60",pregunta: 2, respuesta_id: 4}
+		]
+	}    
+]
+
+
+
+
 var question = [{
     Number: 1,
     Question: '¿Cuál es la figura que se encuentra arriba a la derecha del triángulo?',
@@ -2834,10 +2867,10 @@ var question = [{
     Question: 'Un señor empieza a trabajar a las 9 de la mañana. Tarda 10 minutos en bañarse, 20 minutos en desayunar, 10 minutos en vestirse y 20 minutos en trasladarse a su trabajo. ¿A qué hora se debe de levantar para llegar a tiempo a su trabajo?',
     useImageQuestion: false,
     imageQuestion: 'No aplica',
-    answer1: '0,375',
-    answer2: '0,354166666666667',
-    answer3: '0,333333333333333',
-    answer4: '0,3125',
+    answer1: '9 : 00',
+    answer2: '8 : 30',
+    answer3: '8 : 00',
+    answer4: '7 : 30',
     Correct: 3,
     includeImages: false,
     image1: 'no aplica',
@@ -5149,13 +5182,13 @@ var question = [{
     grade: 4
 }, {
     Number: 2,
-    Question: 'Después de ir a visitar a Justice, Oof regresó a su casa a las 18:30 hrs. De la casa de Justice a su casa, Oof hizo 30 min. Estudiaron durante 40 min y después jugaron 25 minutos. Y le tomó media hora llegar a casa de Justice. ¿A qué hora salió de su casa Oof?',
+    Question: 'Después de ir a visitar a Justice, Oof regresó a su casa a las 18:30 hrs. De la casa de Justice a su casa, Oof hizo 30 min. Estudiaron durante 40 min y después jugaron 25 minutos. Y le tomó media hora llegar a casa de Justice. ¿A qué hora salió de su casa Oof?',			
     useImageQuestion: false,
     imageQuestion: 'No aplica',
-    answer1: '0,642361111111111',
-    answer2: '0,65625',
-    answer3: '0,684027777777778',
-    answer4: '0,697916666666667',
+    answer1: '15 : 25',
+    answer2: '15 : 45',
+    answer3: '16 : 25',
+    answer4: '16 : 45',
     Correct: 3,
     includeImages: false,
     image1: 'no aplica',
@@ -5551,10 +5584,10 @@ var question = [{
     Question: 'Un reloj digital marca 2:54, un minuto después hay un cambio de dígito. ¿Qué hora marcará después de 16 cambios de dígitos?',
     useImageQuestion: false,
     imageQuestion: 'No aplica',
-    answer1: '0,125694444444444',
-    answer2: '0,131944444444444',
-    answer3: '0,197916666666667',
-    answer4: '0,167361111111111',
+    answer1: '3 : 01',
+    answer2: '3 : 10',
+    answer3: '4 : 45',
+    answer4: '4 : 01',
     Correct: 2,
     includeImages: false,
     image1: 'no aplica',
@@ -7299,10 +7332,10 @@ var question = [{
     Question: 'Julio tiene que tomar una pastilla cada 15 minutos, a las 10:05 pm toma la primera. ¿A qué hora tomará la cuarta pastilla? ',
     useImageQuestion: false,
     imageQuestion: 'No aplica',
-    answer1: '0,444444444444444',
-    answer2: '0,451388888888889',
-    answer3: '0,454861111111111',
-    answer4: '0,461805555555556',
+    answer1: '10:40 pm',
+    answer2: '10:50 pm',
+    answer3: '10:55 pm',
+    answer4: '11:55 pm',
     Correct: 2,
     includeImages: false,
     image1: 'No aplica',
@@ -7584,10 +7617,10 @@ var question = [{
     Question: 'Ana, María y Laura son tres amigas. Si a las 9:00 las tres brincan juntas y luego Ana brinca cada 20 segundos, María cada 39 segundos y Laura cada 50 segundos, la hora en la que las tres vuelven a brincar juntas es:',
     useImageQuestion: false,
     imageQuestion: 'No aplica',
-    answer1: '0,423611111111111',
-    answer2: '0,430555555555556',
-    answer3: '0,420138888888889',
-    answer4: '0,4375',
+    answer1: '10 : 10',
+    answer2: '10 : 20',
+    answer3: '10 : 20',
+    answer4: '10 : 30',
     Correct: 3,
     includeImages: false,
     image1: 'No aplica',

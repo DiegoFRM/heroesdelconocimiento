@@ -3,6 +3,7 @@ selectQuestion = 0;
 //SOUNDS*****************
 var soundActive = true;
 var soundQuestion = document.getElementById("soundQuestion");
+var soundQuestion = document.getElementById("soundQuestion");
 var popSound = document.getElementById("popSound");
 var magicSound = document.getElementById("magicSound");
 var abdutionSound = document.getElementById("abdutionSound");
@@ -14,8 +15,7 @@ var buttonSelect;
 var sesionSaveQuestion = new Array;
 var counter = 0;
 var gradeSelection = 1;
-var totalQuestions = question.length-1;
-//var totalQuestions = 0;
+var totalQuestions = preguntas.length;
 var questionGradeSelect = new Array;
 //TIMER****************
 var timeInit;
@@ -23,8 +23,8 @@ var centesimas = 0;
 var segundos = 0;
 var minutos = 0;
 var starsAnimation;
-var soundQuestion = document.getElementById("soundQuestion");
 var alertAnimation = TweenMax.fromTo($(".phase-clock"),1,{alpha:1},{alpha:0,yoyo:true,repeat:-1});
+
 var alertClock1 = {
     time:config.timeLimit/2,
     complete:false
@@ -42,49 +42,31 @@ var AnimationI;
 var answerSelect;
 var posCenter;
 
-   /* for(var d = 0;d<= question.length-1 ; d++){
-        if(question[d].grade == gradeSelection){
-            totalQuestions++;
-        }
-    }
-*/
-
 
     //LOAD QUESTION
     function loadQuestion(){
-        $(".type-questionSelect").text(question[selectQuestion].typeQuestion + " " + question[selectQuestion].Level)
+        $(".type-questionSelect").text("Etapa: " + etapa + ", image Name:" + question[selectQuestion].imageQuestion)
+        
         var languageSelect = "es";
         var typeQuestion
-        console.log(question[selectQuestion].typeQuestion)
-        if(question[selectQuestion].audio){
-            if(question[selectQuestion].typeQuestion == "Practica"){
-                if(question[selectQuestion].Level == 1){
-                   typeQuestion = "e0"; 
-                }else{
-                    typeQuestion = "e1"; 
-                }
-            
-            }else if(question[selectQuestion].typeQuestion == "Torneo"){
-            typeQuestion = "t1";     
-            }  
-        }
         
-        if(question[selectQuestion].audio){         
-            var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
-            console.log(typeQuestion);
-            soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3";
+
+        if(preguntas[selectQuestion].audio){         
+            var soundSelect = "q" + preguntas[selectQuestion].orden +  "_" + "g" + grado + "_e" + etapa + "_" + languageSelect;
+            soundQuestion.src = "assets/sounds/" + preguntas[selectQuestion].audio;
             soundQuestion.play();
             
         }
+        
         $("#retro").hide();
         $("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
-        $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')
-        $("#question").find("span").html(question[selectQuestion].Question);  
+        $(".section-gradeText").html('<span>' + grado +'° grado</span>')
+        $("#question").find("span").html(preguntas[selectQuestion].descripcion);  
         
-        if(question[selectQuestion].useImageQuestion){
+        if(preguntas[selectQuestion].imagen){
             $(".ranuraimagen").css("opacity",1);
             TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
-           $("#imageQuestion").find("img").attr('src','assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion].imageQuestion + '.png');
+           $("#imageQuestion").find("img").attr('src','assets/images/grade'+grado +'/' + preguntas[selectQuestion].imagen);
             
             
                 $("#imageQuestion").find("img").on("error", function(){
@@ -99,9 +81,9 @@ var posCenter;
         
         for(var a= 1;a<=4;a++){
             $("#answer" + a).attr("index",a);
-            //Include Images or only answers
-            if(question[selectQuestion].includeImages){
-                $("#answer" + a).find(".contentText").find("span").html('<div class="containerQuestionImage"><img src="assets/images/grade'+question[selectQuestion].grade +'/' + question[selectQuestion]["image" + a] + '.png" />'  + question[selectQuestion]["answer" + a]  +"</div>");
+            console.log(preguntas[selectQuestion].respuestas[a-1].imagen)
+            if(preguntas[selectQuestion].respuestas[a-1].imagen){
+                $("#answer" + a).find(".contentText").find("span").html('<div class="containerQuestionImage"><img src="assets/images/grade'+ grado +'/' + preguntas[selectQuestion].respuestas[a-1].imagen + '" />' + '</div>');
                 
                 $("#answer" + a).find(".containerQuestionImage").find("img").on("error", function(){
                     $(this).attr('src', 'assets/images/EnProceso2.png');
@@ -109,7 +91,7 @@ var posCenter;
                 
             }else{
                 
-                $("#answer" + a).find(".contentText").find("span").html(question[selectQuestion]["answer" + a] );
+                $("#answer" + a).find(".contentText").find("span").html(preguntas[selectQuestion].respuestas[a-1].descripcion );
                 var limitCharacters = $("#answer" + a).find(".contentText").find("span")
                 
                /* if(limitCharacters.text().length == 0){
@@ -163,19 +145,9 @@ var posCenter;
         $(".answer").find(".optionLetters").removeClass("correct-button");
         $(".answer").find(".optionLetters").removeClass("select-button");
         saveAnswer(question[selectQuestion].Question,buttonSelect.id)
-        if(counter == totalQuestions-1){
-            console.log("completed");
-            resultsScene();
-            
-        }else{
-            counter++;
-            //HARDCOREADA
-            //selectQuestion = result[counter];
-            selectQuestion = counter
-            questionAnimation(buttonSelect.id);
-            //loadQuestion();  
-        }
-
+        counter++;
+        selectQuestion = counter
+        questionAnimation(buttonSelect.id);
     }
     
     //INCLUDE LETTERS IN ANSWERS
@@ -195,8 +167,8 @@ var posCenter;
         result.push(rand);
         rand = randoms();
     }
-    //CONFIRM BUTTON
-    //selectQuestion = result[counter];
+
+
     selectQuestion = counter;
     
     $("#buttonForward").click(function(){
@@ -346,6 +318,7 @@ function questionAnimation(selectQuestion){
     abdutionSound.play();
     TweenMax.to(obj4, 0.5, {scaleX:0,delay:3.5});
    selectionQ = TweenMax.to(answerSelect,1,{alpha:0,left:posCenter,top:-document.body.clientHeight/2 + "px",scale:0, delay:2,onComplete:abductionOptions})
+    
   if(config.includeOptionsLetters){ 
         for(var i = 1;i<=config.NumberOptions;i++){
             if( i != $("#" + selectQuestion).attr("index")){
@@ -361,32 +334,29 @@ function abductionOptions(){
         obj2 = $("#imageQuestion"),
         obj3 = $("#imageQuestion").find("img"),
         obj4 = $(".abductionlight");  
-        $(answerSelect).removeAttr( 'style' );
-   if(config.includeOptionsLetters){ 
-       
-        for(var i = 1;i<=config.NumberOptions;i++){
-            TweenMax.fromTo($("#answer" + i),0.5,{scale:0,alpha:0},{scale:1,alpha:1,delay:0.3 * i,ease:Back.easeOut});
-        }     
-    }
-    
+    if(counter == totalQuestions){
+                console.log("completed");
+                resultsScene();
+    }else{
+         $(answerSelect).removeAttr( 'style' );
 
-    AnimationQ.reverse();
-    AnimationQ =  TweenMax.to(obj1, 0.8, {height:"auto",delay:1,onComplete:showImage});
-    
-    function showImage(){
-       AnimationI.reverse();   
+        if(config.includeOptionsLetters){ 
+       
+            for(var i = 1;i<=config.NumberOptions;i++){
+                TweenMax.fromTo($("#answer" + i),0.5,{scale:0,alpha:0},{scale:1,alpha:1,delay:0.3 * i,ease:Back.easeOut});
+            }        
+        }        
+            AnimationQ.reverse();
+            AnimationQ =  TweenMax.to(obj1, 0.8, {height:"auto",delay:1,onComplete:showImage});
+            function showImage(){
+                    AnimationI.reverse();   
+            }
+            loadQuestion();
     }
-    loadQuestion();
+
     
 }
 
-
-//APPLY BLUR IN CONTAINER
-var blurElement = {a:0};
-//TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
-function applyBlur(){
-    TweenMax.set(['#container'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
-};
 //BEGIN TEST ACTION
 $("#beginTest").click(function(){
     $("#beginTest").off( "click");
@@ -410,12 +380,13 @@ $(".modal-title").append("<img src='assets/images/yogome_logo.png'>")
 $("#end-modal").hide();
 
 function resultsScene(){
-    $("#end-modal").show()
-    clearInterval(timeInit); 
-    $("#modal").show();
-    $("#modal").css("opacity",1);    
-    config.resultsScene = "¡Has concluido tu prueba!<br>tu tiempo fue de: "+ $("#clock").text() +"<br>y obtuviste un puntaje de:";
-    $("#end-modal").find(".modal-body").html(config.resultsScene);
+    $("#question").hide();
+    TweenMax.to($("#ship"),2,{top:"30%",scale:0.5,ease:Back.easeInOut}); 
+    TweenMax.to($("#container"),1,{alpha:0});
+    TweenMax.to($("#floor"),1,{top:"50%", delay:2});  
+    starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 240%',repeat:-1,delay:2,ease:Linear.easeNone});
+    TweenMax.to($("#ship"),2,{top:"-100%",scale:2,delay:4,ease:Back.easeInOut}); 
+    starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 0%',repeat:1,delay:4.5,ease:Linear.easeNone});
 }
 
 $("#counter-page").find("span").html(1 + "/" + totalQuestions);
@@ -585,6 +556,14 @@ var objectsTutorial =
         $("#buttonForward")
     ]
 
+//APPLY BLUR IN CONTAINER
+var blurElement = {a:0};
+//TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
+function applyBlur(){
+    TweenMax.set(['.section-grade','#counter-page','.contentBar','#timerSection','.buttonHelp','.buttonAudio'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
+};
+
+
 var textsTutorial = 
     [
     "Aquí verás tu grado escolar.",
@@ -690,5 +669,32 @@ function onlyQuestions(){
 
 //onlyQuestions();
 
+/*PARTICULES*/
+/*
+var starParticle = "assets/images/star.png"
+var totalParticules = 4;
+
+function particles(numParticule,pathImage){
+    $('body').append('<div id="particules"></div>')
+    for(var p = 0;p<=numParticule;p++){
+        $('#particules').append('<div id="parti_'+p+'" class="particuleStarClass"><img src='+pathImage+'></div>');
+    }
+}
+particles(totalParticules,starParticle)
+
+function animateParticule(){
+    console.log(Math.floor((Math.random() * 100) + 1))
+    for(var p = 0;p<=totalParticules;p++){
+        TweenMax.fromTo($("#parti_" + p),0.5,{scale:0,alpha:1,left:"0px",top:"0px"},{scale:3,alpha:0,left:Math.floor((Math.random() * 100) + 1) + "px",top:Math.floor((Math.random() * 100) + 1) + "px"})
+        
+    }
+}
 
 
+
+$(this).click(function(){
+    $('#particules').css("left",event.clientX)
+    $('#particules').css("top",event.clientY)
+    animateParticule()
+});
+*/
