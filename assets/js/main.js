@@ -548,7 +548,6 @@ function BeginQuestions(){
         soundQuestion.pause();
         soundQuestion.currentTime = 0;
 }
-
 function explainBegin(){
     //$("#buttonForward").hide();
     $("#cortainTutorial").css("visibility","visible");
@@ -561,23 +560,23 @@ function explainBegin(){
 
 var objectsTutorial = 
     [
-        $(".section-grade"),
-        $("#counter-page"),
-        $(".contentBar"),
-        $("#timerSection"),
-        $(".buttonHelp"),
-        $(".buttonAudio"),
-        $("#question"),
-        $("#imageQuestion"),
-        $("#answer-section"),
-        $("#buttonForward")
+        ".section-grade",
+        "#counter-page",
+        ".contentBar",
+        "#timerSection",
+        ".buttonHelp",
+        ".buttonAudio",
+        "#question",
+        "#imageQuestion",
+        "#answer-section",
+        "#buttonForward"
     ]
 
 //APPLY BLUR IN CONTAINER
-var blurElement = {a:0};
+var blurElement = {a:10};
 //TweenMax.to(blurElement, 1, {a:10, onUpdate:applyBlur});
 function applyBlur(){
-    TweenMax.set(['.section-grade','#counter-page','.contentBar','#timerSection','.buttonHelp','.buttonAudio'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
+    TweenMax.set(['.section-grade','#counter-page','.contentBar','#timerSection','.buttonHelp','.buttonAudio','#question','#imageQuestion','#answer-section','#buttonForward'], {webkitFilter:"blur(" + blurElement.a + "px)",filter:"blur(" + blurElement.a + "px)"});  
 };
 
 
@@ -599,9 +598,11 @@ var stepTutorial = 0;
 function stepsTutorialFX(){
     if(stepTutorial != objectsTutorial.length){
         for(i= 0;i<=objectsTutorial.length-1;i++){
-            objectsTutorial[i].css("z-index",1);
+            $(objectsTutorial[i]).css("z-index",1);
         }
-        objectsTutorial[stepTutorial].css("z-index",10000); 
+        applyBlur()
+        TweenMax.set([objectsTutorial[stepTutorial]], {webkitFilter:"blur(" + 0 + "px)",filter:"blur(" + 0 + "px)"});  
+        $(objectsTutorial[stepTutorial]).css("z-index",10000); 
         $("#pageExplain").find("p").text(textsTutorial[stepTutorial])
 
         stepTutorial++
@@ -610,6 +611,8 @@ function stepsTutorialFX(){
         TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
         TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});
         soundQuestion.play();
+        blurElement = {a:0}
+        applyBlur()
     }
     
     if(stepTutorial == 8){
@@ -631,6 +634,9 @@ $("#jumpExplainButton").click(function(){
         TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
         TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});    
     soundQuestion.play();
+    
+        blurElement = {a:0}
+        applyBlur()
 });
 
 function startQuiz(){
