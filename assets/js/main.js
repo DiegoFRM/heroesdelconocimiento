@@ -690,7 +690,7 @@ function onlyQuestions(){
 }
 
 
-//onlyQuestions();
+onlyQuestions();
 
 /*PARTICULES*/
 /*
