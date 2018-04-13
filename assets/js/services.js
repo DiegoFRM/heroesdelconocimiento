@@ -3,7 +3,7 @@ var services = function () {
 
 	var SECTION = "/tournament"
 	var VERSION = "/v1"
-	var STATUS_SUCCESS = 2
+	var STATUS_SUCCESS = 0
 
 	var LOGIN_CHILD = SECTION + "/child" + VERSION + "/login"
 	var INIT_EXAM = SECTION + "/examen" + VERSION + "/iniciarExamen"
@@ -21,16 +21,16 @@ var services = function () {
 			async:true,
 			processData:false
 		}).done(function(response){
-			if((response)&&((response.status === STATUS_SUCCESS)||(response.status === "registered"))){
+			// if((xhr)&&(xhr.status === STATUS_SUCCESS)){
 				setCredentials(response)
 				if(onSuccess)
 					onSuccess(response)
 				console.log("success", response)
-			}else {
-				localStorage.clear()
-				if(onError)onError(response)
-				console.log("error", response)
-			}
+			// }else {
+			// 	localStorage.clear()
+			// 	if(onError)onError(response)
+			// 	console.log("error", xhr)
+			// }
 		}).fail(function(response){
 			localStorage.clear()
 			if(onError)onError(response)

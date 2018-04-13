@@ -15,8 +15,11 @@ var buttonSelect;
 var sesionSaveQuestion = new Array;
 var counter = 0;
 var gradeSelection = 1;
+var preguntas
 var totalQuestions = question.length;
 var questionGradeSelect = new Array;
+var examID = window.location.hash.substr(1);
+var grado = 1
 //TIMER****************
 var timeInit;
 var centesimas = 0;
@@ -42,6 +45,21 @@ var AnimationI;
 var answerSelect;
 var posCenter;
 
+
+function tutorialQuestion(){
+    
+        $("#retro").hide();
+        $("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
+        $(".section-gradeText").html('<span>' + grado +'° grado</span>')
+        $("#question").find("span").html("Una caja tiene 5 galletas. Si compramos 4 cajas ¿cuántas galletas tenemos?"); 
+        $(".ranuraimagen").css("opacity",1);
+        TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
+           $("#imageQuestion").find("img").attr('src','assets/images/cookies.png');
+        $("#answer1").find(".contentText").find("span").html("20");
+        $("#answer2").find(".contentText").find("span").html("25");
+        $("#answer3").find(".contentText").find("span").html("19");
+        $("#answer4").find(".contentText").find("span").html("21");
+}
 
     //LOAD QUESTION
    function loadQuestion(){
@@ -149,9 +167,7 @@ var posCenter;
 
             }); 
         }        
-    }
-
-
+    } 
 
     //NEXT QUESTION
     function nextQuestion(){
@@ -161,10 +177,11 @@ var posCenter;
         $(".answer").find(".optionLetters").removeClass("incorrect-button");
         $(".answer").find(".optionLetters").removeClass("correct-button");
         $(".answer").find(".optionLetters").removeClass("select-button");
-        saveAnswer(question[selectQuestion].Question,buttonSelect.id)
-        counter++;
-        selectQuestion = counter
-        questionAnimation(buttonSelect.id);
+        saveAnswer(preguntas[selectQuestion], buttonSelect)
+        // saveAnswer(question[selectQuestion].Question,buttonSelect.id)
+        // counter++;
+        // selectQuestion = counter
+        // questionAnimation(buttonSelect.id);
     }
     
     //INCLUDE LETTERS IN ANSWERS
@@ -236,14 +253,23 @@ var posCenter;
         };
     }
     //SAVE QUESTION AND ANSWER
-    function saveAnswer(question,answer){
-        sesionSaveQuestion[counter] = [{Question:"",Answer:""}]
-        sesionSaveQuestion[counter].Question = question;
-        sesionSaveQuestion[counter].Answer  = answer; 
+    function saveAnswer(question){
+        //sesionSaveQuestion[counter] = [{Question:"",Answer:""}]
+        //sesionSaveQuestion[counter].Question = question;
+        //sesionSaveQuestion[counter].Answer  = answer;
+		var answerId = $(buttonSelect).attr("answerid")
+		answerId = parseInt(answerId)
+
+		function onSuccess(){
+			counter++;
+			selectQuestion = counter
+			questionAnimation(buttonSelect.id);
+		}
+
+		services.registerAnswer(question.id, answerId, onSuccess)
     }
     
 
-    
     //SHOW ANSWER 
     function sendAnswer(btn){
         for(var b = 0;b< question[selectQuestion].Correct.length;b++){
@@ -264,10 +290,6 @@ var posCenter;
                 } 
         }
     }
-
-
-
-
 
 /*TIME*/
 function cronometro () {
@@ -315,12 +337,6 @@ if (centesimas < 99) {
     }
     
 }
-function initTimer () {
-    $("#modal").hide();
-	timeInit = setInterval(cronometro,10);
-    
-}
-
 
 function questionAnimation(selectQuestion){
     var obj1 = $("#question"),
@@ -374,28 +390,31 @@ function abductionOptions(){
     
 }
 
-//BEGIN TEST ACTION
-$("#beginTest").click(function(){
-    $("#beginTest").off( "click");
+//CLOSE MODAL
+$("#modal").hide();
+
+$(".buttonHelp").click(function(){
+    $("#modal").show();
+    TweenMax.fromTo($("#begin-modal"),0.2,{scale:0},{scale:1,ease:Back.easeIn});
+    TweenMax.fromTo($("#modal"),0.5,{alpha:0},{alpha:1,ease:Back.easeIn});    
+});
+    
+
+$("#closeHelp").click(function(){
+    //$("#closeHelp").off( "click");
     TweenMax.fromTo($("#begin-modal"),0.5,{scale:1},{scale:0,ease:Back.easeIn});
     TweenMax.fromTo($("#modal"),1,{alpha:1},{alpha:0,ease:Back.easeIn});
-    TweenMax.to(blurElement, 1, {a:0, onUpdate:applyBlur,onComplete:initTimer});
-    beginAnimationShip();
-    starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
-    TweenMax.fromTo($(".modal-window"),0.5,{scale:0},{scale:1,ease:Back.easeOut})
-    $("#modal").css("opacity",1);
+    TweenMax.to(blurElement, 1, {a:0, onUpdate:applyBlur,onComplete:hideModal});
+
 });
 
-//INCLUDE GRADE **********
-
-$(".modal-title").append("<img src='assets/images/yogome_logo.png'>")
-//LOAD INSTRUCTIONS
-
-
+function hideModal () {
+    $("#modal").hide();
+	//timeInit = setInterval(cronometro,10);   
+}
 
 //LOAD FINISH EXAM
 $("#end-modal").hide();
-
 function resultsScene(){
     $("#question").hide();
     TweenMax.to($("#ship"),2,{top:"30%",scale:0.5,ease:Back.easeInOut}); 
@@ -407,58 +426,58 @@ function resultsScene(){
 }
 
 $("#counter-page").find("span").html(1 + "/" + totalQuestions);
-$("#page2").hide();
-$("#page3").hide();
+for(var i=2;i<=7;i++){
+    $("#page" + i).hide();
 
+}
 var counterTutorial = 1;
-
-$(".menuback-tutorial").click(function(){
-        popSound.play();
-    if(counterTutorial == 2){       
-        $("#page2").hide();
-        $("#page1").show();
-        $(".menuback-tutorial").css("background-image","url('assets/images/tutorial/prev-inactive.png')");
-        counterTutorial--;
-        $(".numberpage-tutorial").text("1/3");
-    }else if(counterTutorial == 3){
-        
-        $("#page3").hide();
-        $("#page2").show();
-        counterTutorial--;
-        $(".numberpage-tutorial").text("2/3"); 
-        $(".menunext-tutorial").css("background-image","url('assets/images/tutorial/next.png')");
-    }
-});
-
 $(".menunext-tutorial").click(function(){
     popSound.play();
-    if(counterTutorial == 1){       
-        $("#page1").hide();
-        $("#page2").show();
+    
+    if(counterTutorial != 7){
+        for(var i=1;i<=7;i++){
+            tutorialSounds[i].pause();
+            tutorialSounds[i].currentTime = 0;
+            $("#page" + i).hide();
+        }  
+        
+        counterTutorial++
+        tutorialSounds[counterTutorial].play();
+        $(".numberpage-tutorial").text( counterTutorial +"/" + 7); 
+        $("#page" + counterTutorial).show();
         $(".menuback-tutorial").css("background-image","url('assets/images/tutorial/prev.png')");
-        counterTutorial++;
-        $(".numberpage-tutorial").text("2/3");
-    }else if(counterTutorial == 2){
-        $("#page2").hide();
-        $("#page3").show();
-        counterTutorial++;
-        $(".numberpage-tutorial").text("3/3"); 
+    }else{
         $(".menunext-tutorial").css("background-image","url('assets/images/tutorial/next-inactive.png')");
+    }
+
+});
+$(".menuback-tutorial").click(function(){
+        popSound.play();
+    if(counterTutorial != 1){
+        for(var i=1;i<=7;i++){
+            tutorialSounds[i].pause();
+            tutorialSounds[i].currentTime = 0;
+            $("#page" + i).hide();
+        }  
+        counterTutorial--
+        tutorialSounds[counterTutorial].play();
+        $(".numberpage-tutorial").text( counterTutorial +"/" + 7); 
+        $("#page" + counterTutorial).show();
+        $(".menunext-tutorial").css("background-image","url('assets/images/tutorial/next.png')");
+    }else{
+        $(".menuback-tutorial").css("background-image","url('assets/images/tutorial/prev-inactive.png')");
     }
 });
 
-    starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
 
+starsAnimation = TweenMax.to($("#starstile"), 1,{backgroundPosition:'0 -240%',repeat:-1,ease:Linear.easeNone});
 var elementsTutorial = [
     $(".top-tutorial"),
     $(".bottom-tutorial"),
     $(".globe-tutorial"),
     $(".eagle-tutorial"),
-    $(".title-tutorial")
-    
+    $(".title-tutorial")    
 ]
-
-
 
 var topTutorial,bottomTutorial,globeTutorial,titleTutorial,eagleTutorial
 
@@ -471,66 +490,86 @@ topTutorial = TweenMax.fromTo(elementsTutorial[0],1,{top:"-50%"},{top:"0%",delay
 bottomTutorial = TweenMax.fromTo(elementsTutorial[1],1,{bottom:"-50%"},{bottom:"0%",delay:2,onComplete:nextTutorial1})
 
 function nextTutorial1(){
-    
-    titleTutorial = TweenMax.fromTo(elementsTutorial[4],1,{alpha:0,left:"-50%"},{alpha:1,left:"0%"})
+    titleTutorial = TweenMax.fromTo(elementsTutorial[4],1,{alpha:0,left:"-100%"},{alpha:1,left:"0%"})
     elementsTutorial[3].css("opacity",1);
-    eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{left:"-50%"},{left:"0%",ease:Back.easeOut});
+    eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{left:"-100%"},{left:"0%",ease:Back.easeOut});
     elementsTutorial[2].css("opacity",1);
-    globetutorial = TweenMax.fromTo(elementsTutorial[2],1,{left:"100%"},{left:"50%",ease:Back.easeOut});
+    globetutorial = TweenMax.fromTo(elementsTutorial[2],1,{left:"100%"},{left:"50%",ease:Back.easeOut,onComplete:soundTutorial1});
 
 }
 
 
+
+// function hideTutorial() {
+// 	$("#globeExplain").hide();
+// 	TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:function () {
+// 			$("#cortainTutorial").hide();
+// 		}});
+// 	TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});
+// 	// loadQuestion();
+// 	soundQuestion.play();
+// 	blurElement = {a:0}
+// 	applyBlur()
+// }
+
+function initExam(){
+    function onSuccess(response){
+    	preguntas = response.preguntas
+		totalQuestions = question.length;
+		etapa = response.etapa
+		grado = response.grado
+		loadQuestion()
+	}
+
+	services.initExam(examID, onSuccess)
+}
+
+function loginChild(){
+    services.loginChild("nick", 1234, initExam)
+}
+
 $(".beginquiz-tutorial").click(function(){
      titleTutorial = TweenMax.fromTo(elementsTutorial[4],1,{alpha:0,left:"0%"},{alpha:1,left:"-50%"});
-    globetutorial = TweenMax.to(elementsTutorial[2],1,{left:"130%",ease:Back.easeOut});
+    globetutorial = TweenMax.to(elementsTutorial[2],1,{left:"230%",ease:Back.easeOut});
     topTutorial = TweenMax.fromTo(elementsTutorial[0],2,{scale:1,top:"0%"},{scale:2,top:"-100%"})
     bottomTutorial = TweenMax.fromTo(elementsTutorial[1],2,{scale:1,bottom:"0%"},{scale:2,bottom:"-100%"})
-    eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{scale:1,left:"0%"},{scale:2,left:"-100%",ease:Back.easeOut,onComplete:beginAnimationShip});
+    eagleTutorial = TweenMax.fromTo(elementsTutorial[3],1,{scale:1,left:"0%"},{scale:2,left:"-200%",ease:Back.easeOut,onComplete:beginAnimationShip()});
     magicSound.play();
-
+        tutorialSounds[7].pause();
+        tutorialSounds[7].currentTime = 0;
+        tutorialSounds[8].play();
+        tutorialSounds[8].pause();
+        tutorialSounds[8].currentTime = 0;
 });
-
-
 // ANIMATION FOR SPACESHIP
-
 var images = new Array;
     for(var c = 0;c<=20;c++){
         images[c] = "assets/images/secuencia/ship-normal-idle_slow_v2_"+c+".png";
     }
-
-
-
 	var obj = {curImg: 0};
 	var tween = TweenMax.to(obj, 3,
 		{
-			curImg: images.length - 1,	// animate propery curImg to number of images
-			roundProps: "curImg",				// only integers so it can be used as an array index
-			repeat: -1,									// repeat 3 times
-			immediateRender: true,			// load first image automatically
-			ease: Linear.easeNone,			// show every image the same ammount of time
+			curImg: images.length - 1,
+			roundProps: "curImg",
+			repeat: -1,
+			immediateRender: true,
+			ease: Linear.easeNone,
 			onUpdate: function () {
-			  $("#eagle").attr("src", images[obj.curImg]); // set the image source
+			  $("#eagle").attr("src", images[obj.curImg]);
 			}
 		}
-	);
-
-
-    
+	); 
     var shipAnimation = new TimelineMax();
     bgm.play();
     bgm.loop = true;
     bgm.volume = 0.3;
 
     function beginAnimationShip(){
-        //shipAnimation.call(function() {$('#ship').addClass("posx20");}, null, null, 2);
         TweenMax.to($("#ship"),2,{top:"20%",ease:Back.easeOut,delay:1});
         TweenMax.to($("#ship"),1,{left:"-20%", scale:0.5,delay:2});
         TweenMax.to($("#ship"),1,{left:"20%",delay:3});
         TweenMax.to($("#ship"),1,{left:"0%", top:"50%",ease:Back.easeIn,delay:4});
         TweenMax.to($("#floor"),1,{top:"0%", delay:4,onComplete:NextShip});  
-        
-
     }
 
 function NextShip(){
@@ -542,12 +581,12 @@ function NextShip(){
 function BeginQuestions(){
     $("#container").css("visibility","visible");
     TweenMax.fromTo($("#container"),1,{alpha:0},{alpha:1,onComplete:explainBegin});
-        //LOAD FIRST QUESTION
-    loadQuestion();
-    
-        soundQuestion.pause();
-        soundQuestion.currentTime = 0;
+    //LOAD FIRST QUESTION
+    tutorialQuestion();
+    soundQuestion.pause();
+    soundQuestion.currentTime = 0;
 }
+
 function explainBegin(){
     //$("#buttonForward").hide();
     $("#cortainTutorial").css("visibility","visible");
@@ -596,6 +635,9 @@ var textsTutorial =
 
 var stepTutorial = 0;
 function stepsTutorialFX(){
+    
+    TweenMax.fromTo($("#arrowExplain").find("img"),0.5,{y:0},{y:20,yoyo:true,repeat:-1})
+    
     if(stepTutorial != objectsTutorial.length){
         for(i= 0;i<=objectsTutorial.length-1;i++){
             $(objectsTutorial[i]).css("z-index",1);
@@ -603,20 +645,56 @@ function stepsTutorialFX(){
         applyBlur()
         TweenMax.set([objectsTutorial[stepTutorial]], {webkitFilter:"blur(" + 0 + "px)",filter:"blur(" + 0 + "px)"});  
         $(objectsTutorial[stepTutorial]).css("z-index",10000); 
+        
+        $("#arrowExplain").css("left", parseInt($(objectsTutorial[stepTutorial]).css("left")) + parseInt($(objectsTutorial[stepTutorial]).width())/2 + "px" );
+        
+        $("#arrowExplain").css("top", parseInt($(objectsTutorial[stepTutorial]).css("top")) + parseInt($(objectsTutorial[stepTutorial]).height()) + "px" );
+        
+        if(stepTutorial == 6){
+            $("#arrowExplain").css("left", parseInt($(objectsTutorial[stepTutorial]).css("left")) + parseInt($(objectsTutorial[stepTutorial]).width())/2 + "px" );
+
+            $("#arrowExplain").css("top", parseInt($(objectsTutorial[stepTutorial]).css("top")) + parseInt($(objectsTutorial[stepTutorial]).height())*2 + "px" );           
+        }
+        if(stepTutorial == 7){
+            $("#arrowExplain").css("left", "50%" );
+
+            $("#arrowExplain").css("top", parseInt($(objectsTutorial[stepTutorial]).css("top")) + parseInt($(objectsTutorial[stepTutorial]).height()) + "px" );           
+        }
+        
+        if(stepTutorial == 8){
+            $("#arrowExplain").css("left", "50%" );
+            $("#arrowExplain").css("transform", "scale(1,-1)" );
+
+            $("#arrowExplain").css("top", parseInt($(objectsTutorial[stepTutorial]).css("top")) + parseInt($(objectsTutorial[stepTutorial]).height()) - 50 + "px" );           
+        }
+        
+        if(stepTutorial == 9){        
+            
+            $("#arrowExplain").css("left", "50%" );
+            $("#arrowExplain").css("transform", "scale(1,-1)" );
+
+            $("#arrowExplain").css("top", parseInt($(objectsTutorial[stepTutorial]).css("top")) + parseInt($(objectsTutorial[stepTutorial]).height())-200  + "px" );  
+        }
+        
         $("#pageExplain").find("p").text(textsTutorial[stepTutorial])
 
+        console.log(stepTutorial);
+        tutorialSounds[stepTutorial+7].pause();
+        tutorialSounds[stepTutorial+7].currentTime = 0;
+        tutorialSounds[stepTutorial+8].play();        
         stepTutorial++
+        
     }else{
         $("#globeExplain").hide();
-        TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
+        TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});
         TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});
-        soundQuestion.play();
+        soundQuestion.pause();
         blurElement = {a:0}
         applyBlur()
     }
     
     if(stepTutorial == 8){
-        $("#pageExplain").css("top","20%");
+        $("#pageExplain").css("top","15%");
     }else{
         $("#pageExplain").css("top","50%");
     }    
@@ -624,34 +702,47 @@ function stepsTutorialFX(){
 
 
 $("#nextExplainButton").click(function(){
+    tutorialSounds[stepTutorial+7].pause();
+    tutorialSounds[stepTutorial+7].currentTime = 0;
     stepsTutorialFX()
     popSound.play();
 });
 
 $("#jumpExplainButton").click(function(){
+    tutorialSounds[stepTutorial+7].pause();
+    tutorialSounds[stepTutorial+7].currentTime = 0;    
     popSound.play();
-        $("#globeExplain").hide();
-        TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
-        TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});    
-    soundQuestion.play();
-    
-        blurElement = {a:0}
-        applyBlur()
+    $("#globeExplain").hide();
+    TweenMax.fromTo($("#cortainTutorial"),0.5,{alpha:1},{alpha:0,onComplete:startQuiz});    
+    TweenMax.to($("#buttonForward"),0.5,{bottom:"-20%"});    
+    soundQuestion.pause();
+    blurElement = {a:0}
+    applyBlur()
 });
 
 function startQuiz(){
     $("#cortainTutorial").hide();
-    
+    questionAnimation(1)
 }
+
+
+$(window).resize(function () {
+      calculateNewScale(".container-canvas");
+    });
+
+    calculateNewScale(".container-canvas"); 
+
+    function calculateNewScale(obj) {
+      var percentageOn1 = $(window).width() / 1280;
+      $(obj).css({
+        "-moz-transform": "scale(" + percentageOn1 + ")",
+        "-webkit-transform": "scale(" + percentageOn1 + ")",
+        "transform": "scale(" + percentageOn1 + ")"
+      });
+    }
 
 
 /*ONLY REVIEW TEST MODE************************/
-if(config.testMode){
-    $("#begin-modal").find(".modal-body").html(config.instructions + '<span>(Estas en modo prueba puedes cambiar las preguntas usando las flechas del teclado <- -> )</span>');
-}else{
-    $("#begin-modal").find(".modal-body").html(config.instructions);
-}
-
 
 if(config.testMode){
   $("body").keydown(function(e) {
@@ -675,6 +766,21 @@ if(config.testMode){
 });  
 }
 
+bgm.volume = 0;
+var tutorialSounds = new Array;
+
+function includeSoundsTutorial(){
+    for(var i = 1; i<=19;i++){
+        $("body").append('<audio id="tutorial'+i+'" src="assets/sounds/tutorial'+i+'.mp3"></audio>');
+        tutorialSounds[i] = document.getElementById("tutorial" + i);
+    }
+}
+
+includeSoundsTutorial()
+
+function soundTutorial1(){
+    tutorialSounds[1].play();
+}
 
 function onlyQuestions(){
     bgm.volume = 0;
@@ -685,39 +791,9 @@ function onlyQuestions(){
     TweenMax.to($("#floor"),1,{top:"0%"});
     starsAnimation.pause();
     explainBegin()
-        loadQuestion();
+        tutorialQuestion();
     
 }
 
 
 //onlyQuestions();
-
-/*PARTICULES*/
-/*
-var starParticle = "assets/images/star.png"
-var totalParticules = 4;
-
-function particles(numParticule,pathImage){
-    $('body').append('<div id="particules"></div>')
-    for(var p = 0;p<=numParticule;p++){
-        $('#particules').append('<div id="parti_'+p+'" class="particuleStarClass"><img src='+pathImage+'></div>');
-    }
-}
-particles(totalParticules,starParticle)
-
-function animateParticule(){
-    console.log(Math.floor((Math.random() * 100) + 1))
-    for(var p = 0;p<=totalParticules;p++){
-        TweenMax.fromTo($("#parti_" + p),0.5,{scale:0,alpha:1,left:"0px",top:"0px"},{scale:3,alpha:0,left:Math.floor((Math.random() * 100) + 1) + "px",top:Math.floor((Math.random() * 100) + 1) + "px"})
-        
-    }
-}
-
-
-
-$(this).click(function(){
-    $('#particules').css("left",event.clientX)
-    $('#particules').css("top",event.clientY)
-    animateParticule()
-});
-*/

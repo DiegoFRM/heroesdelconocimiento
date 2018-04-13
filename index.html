@@ -1,16 +1,20 @@
 <HTML>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Reto Cuantrix</title>
        <!--    jquery    -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>        
         <!-- Bootstrap       -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
         crossorigin="anonymous">
-        <script type="application/javascript" src="assets/js/questions.js"></script>
+        <!--<script type="application/javascript" src="assets/js/questions.js"></script>-->
         <!--LOAD TWEENMAX-->
+        <script type="application/javascript" src="assets/js/questions.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+        <script src="assets/js/spine-canvas.js"></script>
         <link rel="stylesheet" href="assets/css/tournament2018.css">
         <link rel="stylesheet" href="assets/css/custom_fonts.css">
         <meta property="og:url"             content="https://play.yogome.com" />
@@ -74,12 +78,38 @@
                 </p>
             </div>
             <div id="page3" class="page-tutorial">     
-                <h1 class="green-text">¿QUÉ ES EL CONCURSO?</h1>
                 <p>
-                Todos en México sabrán que eres el mejor cuando te vean participar en la gran final que se transmitirá por televisión desde la Ciudad de México. Las preguntas que verás durante el concurso son acerca de temas que ya dominas, sabemos que lo puedes lograr.  
+                Veo que te interesa ganar y eso me gusta, de héroe a héroe, te compartiré algunos consejos:
+                    <br>
+                    1. Busca un lugar donde estés cómodo y tranquilo para no distraerte.
+                </p>
+            </div>
+            <div id="page4" class="page-tutorial">     
+                <p>
+                    2. Revisa tu conexión a internet y que tu computadora o dispositivo móvil tenga batería suficiente para evitar que se apague antes de terminar tu participación.
+                    
+                </p>
+            </div>
+            <div id="page5" class="page-tutorial">     
+                <p>
+                    3. Ten a la mano lápiz, goma y hojas blancas para realizar tus operaciones. Recuerda: los héroes no usamos calculadora.
+                    
+                </p>
+            </div>
+            <div id="page6" class="page-tutorial">     
+                <p>
+                    4. Cuando practiques te pueden ayudar tus maestros, familiares o hasta tus amigos, para solucionar todas las dudas que tengas; pero una vez que el torneo comience deberás hacerlo tú solo. Esta es la verdadera prueba de un Héroe de las Matemáticas.
+                </p>
+            </div>
+            <div id="page7" class="page-tutorial">     
+                <p>
+                    5. ¡Diviértete!
+                    <br>
+                    Ahora te explicaré cómo funcionan las pruebas:  
                 </p>
                 <div class="beginquiz-tutorial"></div>
             </div>
+            <br>
             <div class="menuglobe-tutorial">
                 <div class="menuback-tutorial"></div>
                 <div class="numberpage-tutorial">1/3</div>
@@ -90,7 +120,7 @@
         
     <div id="globeExplain">
         <div class="eagle-tutorial"></div>
-<!--        <div id="arrowExplain"><img src="assets/images/arrow_explain.png"></div>-->
+        <div id="arrowExplain"><img src="assets/images/arrow_explain.png"></div>
             <div id="pageExplain" class="page-explain">     
                 <p>
                 Aquí verás tu grado escolar.
@@ -105,17 +135,26 @@
         
 <section id="modal">
                 <div id="begin-modal" class="modal-window">
-                    <div class="modal-title"></div>
-                        <div class="modal-body"></div>
+
+                    <div id="closeHelp"><img src="assets/images/closehelp.png"></div>
+                    <div class="modal-title">
+                        <img src="assets/images/barhelp.png">
+                    </div>
+                        <div class="modal-body">
+                            <div class="globe-help">
+                               <p></p>
+                            </div>
+                            <div class="yogotar-help"><img src="assets/images/yogotar.png"></div>
+
+                    
+                        </div>
                         <div class="modal-footer">
-                            <div id="beginTest" class="buttonOk"></div>
                           </div>
                 </div>
                <div id="end-modal" class="modal-window">
                     <div class="modal-title"></div>
                         <div class="modal-body"></div>
                         <div class="modal-footer">
-                            <div id="beginTest" class="buttonOk"></div>
                           </div>
                 </div>
 
@@ -126,10 +165,16 @@
             
             <div id="cortainTutorial"></div>
             <section id="decorations">
-            
+                
                 <div class='section-grade'>
                     <img class='section-gradeImg' src='assets/images/gradebar1.png'>
                         <div class='section-gradeText'></div>
+                    
+                <div class="container-canvas">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                    
+                    
                 </div>
                 <div class="contentBar"><div class="progressBar"></div></div>
                 <div class="buttonAudio"></div>
@@ -186,6 +231,8 @@
 
         </main>
         <div id="buttonForward"><span></span></div>
+        <script src="assets/js/spine.js"></script>
+        <script src="assets/js/services.js"></script>
         <script type="application/javascript" src="assets/js/config.js"></script>
         <script type="application/javascript" src="assets/js/main.js"></script>
         <script>

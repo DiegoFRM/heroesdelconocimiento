@@ -99,6 +99,7 @@ body{
     width: 30%;
     height: 15%;
     z-index: 1;
+
 }
 
 .section-grade img{
@@ -233,7 +234,7 @@ body{
     position: relative;
     width: 100%;
     color: #FFF;
-    font-size: 1.6em;
+    font-size: 1.8em;
     background-color: rgb(89,113,142);
     border:0.2vw solid rgb(114,171,211);
     border-radius: 0vw 0vw 1vw 1vw;
@@ -241,10 +242,11 @@ body{
     border-top: 0;
     margin: 0 auto;
     max-width: 1300px;
+    z-index: 1;
 }
 
 .span-question{
-    padding: 1.8vw;
+    padding: 2vw;
     position: relative;
 }
 
@@ -387,35 +389,111 @@ body{
 }
 
 
-#modal{
-    position: absolute;
-    z-index: 100;
-    background-color: rgba(0,0,0,0.5);
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
-}
-
 #tutorialScreen{
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.modal-window{
+
+#modal{
     position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
+    height: 100%;
+    top:0%;
+    left:0%;
+    z-index: 100000;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-window{
+    position: relative;
+    width: 80%;
+    height: 90%;
     color:#000;
-    width: 70%;
-    max-width: 1024px;
-    background-color: rgba(250,250,250,0.7);
+    max-width: 1080px;
+    max-height: 750px;
+    background-color: rgba(250,250,250,1);
     padding: 5vw;
     border-radius:1vw;
     font-size: 2vw;
-    text-align: center;
+    background-image: url("../images/bghelp.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     
+}
+
+#closeHelp{
+    position: absolute;
+    top: 1%;
+    right: 0%;
+    text-align: right;
+    background-image: url("../images/corner.png");
+    background-repeat: no-repeat;
+    padding: 1vw;
+    
+}
+
+.modal-title{
+    position: relative;
+    left:-7%;
+    width: 35%;
+}
+
+.modal-title img{
+    width: 100%;
+}
+
+.modal-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.globe-help{
+    position: relative;
+    width: 70%;
+    left: 20%;
+    height: 80%;
+    min-height: 250px;
+    overflow: scroll;
+    background-image: url("../images/globo.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: translate(0%,-10%);
+    padding: 2vw;
+}
+
+.globe-help p{
+    position: relative;
+    width: 100%;
+    height: 90%;
+    overflow: scroll;
+    padding:1vw;
+    font-size: 0.7em;
+    color: #FFF;
+}
+
+.yogotar-help{
+    position: absolute;
+    left: 0%;
+    width: 30%;
+    z-index: 1;
+}
+
+.yogotar-help img{
+    width: 100%;
+    left: -10%;
+    transform: translate(0%,0%);
+}
+
+.globe-help img{
+    width: 100%;
+    transform: translate(10%,0%);
 }
 
 .modal-window span{
@@ -454,8 +532,8 @@ body{
     height: 500px;
     color: #FFF;
     text-align: center;
-    margin-top: -1%;
-    z-index: 10;
+    margin-top: -1.5%;
+    z-index: 1;
     overflow: hidden;
 }
 
@@ -468,7 +546,7 @@ body{
     width: 100%;
     left:0%;
     transform: translate(0%,-5%);
-    z-index: 4;
+    z-index: 1;
 }
 
 .ranuraimagen-img{
@@ -520,8 +598,7 @@ body{
 .title-tutorial{
     position: absolute;
     top:5%;
-    z-index: 1;   
-    
+    z-index: 1;    
 }
 
 .top-tutorial{
@@ -625,6 +702,7 @@ body{
 
 #arrowExplain{
     position: absolute;
+    z-index: 1;
 }
 
 .menuExplain div{
@@ -636,6 +714,7 @@ body{
 
 .page-tutorial{
     margin: 5%; 
+    font-size: 1em;
 }
 
 .blue-text{
@@ -708,6 +787,24 @@ body{
     opacity: 0.5;
     transform: translate(-50%,-50%);
 }
+
+.container-canvas{
+    position: absolute;   
+    width: 30%;
+    left:4%;
+    height: 15%;
+    top:0%;
+}
+
+#canvas { 
+    position: relative;
+    border:0.2vw solid #758da1;
+    border-radius: 50%;
+    width: 100;
+    height: 100;
+
+}
+
 
 /*COSMOS*/
 
@@ -828,14 +925,14 @@ body{
 */
 
 @media only screen 
-  and (min-device-width: 320px) 
+  and (min-device-width: 270px) 
   and (max-device-width: 480px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
       
 #question {
     width: 100%;
-    font-size: 2.5em;    
+    font-size: 0.9em;    
 }      
       
 .ranuraimagen {
@@ -859,8 +956,8 @@ body{
       
 #answer-section{
     left:5%;
-    height: 40%;
-    top:65%;
+    height: 45%;
+    top:60%;
 
 }      
       
@@ -869,10 +966,18 @@ body{
     width: 50%;
     padding: 3vw;
     text-align: center;
-    font-size: 3.5vw;  
-    
     
 }
+  
+.answer .contentText{
+    background-color: rgb(30,0,108);
+    width: 60%;
+    border:1vw solid rgb(127,71,221);
+    border-radius: 2vw;
+    transform: scale(1.3) !important;
+    font-size: 1.8em;
+    min-height: 50px;
+}        
   
    
 #answer1 {
@@ -925,23 +1030,18 @@ body{
     height: 100%;
     top:-100%;
     text-align: center;
-    transform:scale(0.1);
+    transform:scale(1);
 }
+      
+
 
 #eagle{
     height: 55%;
     min-width: 1050px;
-    transform: translate(-20%,-68%) scale(1.5);
+    transform: translate(-30%,-68%) scale(1.5);
 }      
       
-.answer .contentText{
-    background-color: rgb(30,0,108);
-    width: 60%;
-    border:1vw solid rgb(127,71,221);
-    border-radius: 3vw;
-    transform: scale(1.4) !important;
-    font-size: 0.7em;
-}      
+    
  
 .header-bar{
     height: 17%;
@@ -1024,6 +1124,194 @@ body{
     top:4%;
     right: 22%;
 }
-     
+      
+.container-canvas{
+    position: absolute;   
+    width: 0%;
+    left:3%;
+    height: 0%;
+    top:25%;
+}
+
+#canvas { 
+    position: relative;
+    border-radius: 50%;
+    width: 160;
+    height: 160;
+
+} 
+ 
+
+.modal-window{
+    width: 95%;
+    height: 80%;
+    padding: 5vw;
+    border-radius:1vw;
+    font-size: 6vw;
+    
+} 
+  
+.modal-body{
+    display: block;
+}    
+    
+.modal-title{
+    position: relative;
+    left:-4%;
+    width: 70%;
+}
+
+.modal-title img{
+    width: 100%;
+}      
+      
+
+.yogotar-help{
+    position: relative;
+    width: 100%;
+    left: 0%;
+    text-align: center;
+    transform: translate(0,-10%);
+
+}
+
+.yogotar-help img{
+    width: 60%;
+}      
+
+      
+      
+.globe-help{
+    position: relative;
+    left: 0%;
+    width: 100%;
+    height: 50%;
+    background-image: url("../images/globo.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: translate(0%,0%);
+    padding: 2vw;
+}
+
+.globe-help p{
+    position: relative;
+    width: 100%;
+    height: 90%;
+    overflow: scroll;
+    padding:1vw;
+    font-size: 0.7em;
+}      
+  
+      
+.title-tutorial{
+    position: absolute;
+    top:1%;
+    width: 50%;
+}  
+      
+.title-tutorial img{
+    width: 100%;
+}  
+      
+      h1{
+          font-size: 6vw;
+      }       
+      
+      
+.globe-tutorial{
+    position: absolute;
+    width: 90%;
+    top:50%;
+    transform: translate(-50%,-80%);
+    border-radius: 2vw;
+    font-size: 0.8em; 
+    z-index: 100000;
+}  
+      
+ .numberpage-tutorial {
+    font-size: 7vw;
+    transform: translate(0%,-10%);
+}     
+      
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {   
+    #question{
+        font-size: 2vw;
+    }    
+    .answer .contentText{
+        min-height: 60px;
+    }
+      
+.globe-help p{
+    font-size: 1em;
+}   
+    
+.title-tutorial{
+    position: absolute;
+    top:5%;
+    width: 35%;
+}  
+      
+.title-tutorial img{
+    width: 100%;
+}
+      
+.globe-tutorial{
+    position: absolute;
+    width: 70%;
+    left:20%;
+    top:50%;
+    transform: translate(-30%,-50%);
+    border-radius: 2vw;
+    font-size: 1em; 
+}      
+  
+      h1{
+          font-size: 4vw;
+      }      
+      
+.eagle-tutorial{
+    position: absolute;
+    background-image: url(../images/tutorial/eagle.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    width: 50%;
+    height: 70%;
+    bottom: 0%;
+    transform: translate(-20%,0%);
+    z-index: 1;    
+} 
+      
+.numberpage-tutorial {
+    font-size: 4vw;
+    transform: translate(0%,-20%);
+}      
+      
+#ship{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:-100%;
+    text-align: center;
+    transform:scale(1);
+}
+      
+
+
+#eagle{
+    position: relative;
+    height: auto;
+    width: 100%;
+    left:50%;
+    transform: translate(-50%,-70%) scale(1);
+} 
+      
+      
       
 }
