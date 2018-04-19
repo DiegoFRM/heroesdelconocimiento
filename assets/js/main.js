@@ -1,4 +1,5 @@
 /*DIEGO ROJAS 2018*/
+alert("Reto Cuantrix - 19-abril-18-revisión")
 selectQuestion = 0;
 //SOUNDS*****************
 var soundActive = true;
