@@ -796,4 +796,4 @@ function onlyQuestions(){
 }
 
 
-//onlyQuestions();
+onlyQuestions();
