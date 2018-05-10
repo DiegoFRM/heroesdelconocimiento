@@ -1,5 +1,4 @@
 /*DIEGO ROJAS 2018*/
-alert("Reto Cuantrix - 26-abril-18-revisión")
 selectQuestion = 0;
 //SOUNDS*****************
 var soundActive = true;
@@ -48,23 +47,23 @@ var posCenter;
 
 
 function tutorialQuestion(){
-    
-        $("#retro").hide();
-        $("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
-        $(".section-gradeText").html('<span>' + grado +'° grado</span>')
-        $("#question").find("span").html("Una caja tiene 5 galletas. Si compramos 4 cajas ¿cuántas galletas tenemos?"); 
-        $(".ranuraimagen").css("opacity",1);
-        TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
-           $("#imageQuestion").find("img").attr('src','assets/images/cookies.png');
-        $("#answer1").find(".contentText").find("span").html("20");
-        $("#answer2").find(".contentText").find("span").html("25");
-        $("#answer3").find(".contentText").find("span").html("19");
-        $("#answer4").find(".contentText").find("span").html("21");
+	$("#retro").hide();
+	$("#counter-page").find("span").html([counter + 1] + "/" + totalQuestions);
+	$(".section-gradeText").html('<span>' + grado +'° grado</span>')
+	$("#question").find("span").html("El papá de Pedro gasta <div class='fraction'><span class='numerador'>1</span><span class='barfrac'>/</span><span class='denominador'>3</span></div> de su sueldo en colegiaturas, <div class='fraction'><span class='numerador'>1</span><span class='barfrac'>/</span><span class='denominador'>6</span></div> en pagar el club, <div class='fraction'><span class='numerador'>1</span><span class='barfrac'>/</span><span class='denominador'>5</span></div> en paseos con la familia y lo que le queda en ropa y alimentos. Si gana $54120 mensuales, ¿qué cantidad ocupa para ropa y alimentos?");
+	$(".ranuraimagen").css("opacity",1);
+	TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
+	$("#imageQuestion").find("img").attr('src','assets/images/cookies.png');
+	$("#answer1").find(".contentText").find("span").html("<div class='fraction'><span class='numerador'>21</span><span class='barfrac'>/</span><span class='denominador'>64</span></div>");
+	$("#answer2").find(".contentText").find("span").html("<div class='fraction'><span class='numerador'>7</span><span class='barfrac'>/</span><span class='denominador'>16</span></div>");
+	$("#answer3").find(".contentText").find("span").html("<div class='fraction'><span class='numerador'>5</span><span class='barfrac'>/</span><span class='denominador'>8</span></div>");
+	$("#answer4").find(".contentText").find("span").html("<div class='fraction'><span class='numerador'>3</span><span class='barfrac'>/</span><span class='denominador'>4</span></div>");
+   
 }
 
     //LOAD QUESTION
    function loadQuestion(){
-        $(".type-questionSelect").text(question[selectQuestion].typeQuestion + " " + question[selectQuestion].Level)
+        $(".type-questionSelect").text("tipo de pregunta: " + question[selectQuestion].typeQuestion + " " + question[selectQuestion].Level)
         var languageSelect = "es";
         var typeQuestion
         console.log(question[selectQuestion].typeQuestion)
@@ -96,7 +95,7 @@ function tutorialQuestion(){
         $(".section-gradeText").html('<span>' + question[counter].grade+'° grado</span>')
         //FIN HARDCOREADA
         $("#question").find("span").html(question[selectQuestion].Question);  
-        
+            
         if(question[selectQuestion].useImageQuestion){
             $(".ranuraimagen").css("opacity",1);
             TweenMax.fromTo($("#imageQuestion"),1,{alpha:0},{alpha:1});
@@ -113,6 +112,18 @@ function tutorialQuestion(){
                $("#imageQuestion").css("opacity",0);
            }
         
+        var largeTextQuestion = $("#question").find("span").text().length;
+    console.log(largeTextQuestion);
+    if(parseInt(largeTextQuestion) > 200 && question[selectQuestion].useImageQuestion){
+        console.log("ok");
+                $("#question").css("font-size","1.5vw");
+    }else if(parseInt(largeTextQuestion) > 180){
+        $("#question").css("font-size","1.8vw");
+    }else if(parseInt(largeTextQuestion) < 120){
+        $("#question").css("font-size","2vw");
+        
+    }
+       
         for(var a= 1;a<=4;a++){
             $("#answer" + a).attr("index",a);
             //Include Images or only answers
