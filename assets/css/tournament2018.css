@@ -554,7 +554,7 @@ body{
 
 .containerQuestionImage{
     position: absolute;
-    width: 50%;
+    width: 60%;
     padding: 0.5vw;
     transform: translate(-50%,-50%);
 }
