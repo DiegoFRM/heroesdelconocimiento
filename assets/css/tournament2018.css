@@ -12,6 +12,28 @@ body{
     position: fixed;
 }
 
+.jumpQuestionArea{
+position: absolute;
+    z-index: 123123123123;
+    bottom: 1;
+    left: 50%;
+    width: 20%;
+    transform: translate(-100%,0);
+    text-align: center;
+}
+
+.buttonJumpQuestionArea{
+position: absolute;
+    z-index: 123123123123;
+    bottom: 1;
+    left: 50%;
+    width: 20%;
+    text-align: center;    
+    background: green;
+    color:#FFF;
+    font-size: 1.3vw;
+}
+
 #testButtonleft{
     position: absolute;
     z-index: 10;

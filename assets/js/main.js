@@ -843,5 +843,15 @@ function onlyQuestions(){
     
 }
 
+$(".buttonJumpQuestionArea").click(function(){
+   counter = parseInt($(".jumpQuestionArea").val() )
+   selectQuestion = counter - 1
+    
+    loadQuestion();
+    $("#counter-page").find("span").html(counter + "/" + totalQuestions);
+    
+    
+});
+
 
 onlyQuestions();
