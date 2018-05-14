@@ -12,6 +12,30 @@ body{
     position: fixed;
 }
 
+#testButtonleft{
+    position: absolute;
+    z-index: 10;
+    top:50%;
+    left: 0%;
+    opacity: 0.5;
+    transform:  translate(0,-50%);
+}
+
+#testButtonright img,
+#testButtonleft img{
+    max-width: 100px;
+    
+}
+
+#testButtonright{
+    position: absolute;
+    z-index: 10;
+    right: 0%;
+    top:50%;
+    opacity: 0.5;
+    transform: rotate(180deg) translate(0,50%);
+}
+
 #AllContentCuantrix{
     opacity: 0;
 }

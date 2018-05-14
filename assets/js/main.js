@@ -178,7 +178,27 @@ function tutorialQuestion(){
                     }
 
             }); 
-        }        
+        }     
+       
+    $(".globe-help").find("p").html(
+        "Celda Excell: " + (question.indexOf(question[selectQuestion]) + 9) + "<br>" + 
+       "Imagen Pregunta: " + question[selectQuestion].imageQuestion  + "<br>" + 
+       "Correcta: " + question[selectQuestion].Correct  + "<br>" +
+       "Level: " + question[selectQuestion].Level  + "<br>" +
+        "Number: " + question[selectQuestion].Number  + "<br>" +
+        "Respuesta-A: "  + question[selectQuestion].answer1  + "<br>" +
+        "Respuesta-B: "  + question[selectQuestion].answer2  + "<br>" +
+        "Respuesta-C: "  + question[selectQuestion].answer3  + "<br>" +
+        "Respuesta-D: "  + question[selectQuestion].answer4  + "<br>" +
+        "Grado: "  + question[selectQuestion].grade  + "<br>" +
+        "Respuesta Imagen A: "  + question[selectQuestion].image1  + "<br>" +
+        "Respuesta Imagen B: "  + question[selectQuestion].image2  + "<br>" +
+        "Respuesta Imagen C: "  + question[selectQuestion].image3  + "<br>" +
+        "Respuesta Imagen D: "  + question[selectQuestion].image4  + "<br>" +
+        "Tipo de pregunta: "  + question[selectQuestion].typeQuestion  + "<br>")       
+       
+       
+       
     } 
 
     //NEXT QUESTION
@@ -408,7 +428,7 @@ $("#modal").hide();
 $(".buttonHelp").click(function(){
     $("#modal").show();
     TweenMax.fromTo($("#begin-modal"),0.2,{scale:0},{scale:1,ease:Back.easeIn});
-    TweenMax.fromTo($("#modal"),0.5,{alpha:0},{alpha:1,ease:Back.easeIn});    
+    TweenMax.fromTo($("#modal"),0.5,{alpha:0},{alpha:1,ease:Back.easeIn});   
 });
     
 
@@ -757,6 +777,22 @@ $(window).resize(function () {
 /*ONLY REVIEW TEST MODE************************/
 
 if(config.testMode){
+    
+    $("#testButtonleft").click(function(){
+      if(counter != 0){
+          counter--
+            selectQuestion = counter;
+            loadQuestion()
+      }  
+    });
+    
+    $("#testButtonright").click(function(){
+            counter++
+            selectQuestion = counter;
+            loadQuestion()
+        
+    });
+    
   $("body").keydown(function(e) {
   if(e.keyCode == 37) { // left
             //HARDCOREADA
