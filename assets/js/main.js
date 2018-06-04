@@ -68,21 +68,21 @@ function tutorialQuestion(){
         var languageSelect = "es";
         var typeQuestion
         console.log(question[selectQuestion].typeQuestion)
-        if(question[selectQuestion].audio){
+
+        if(question[selectQuestion].audio){    
+            
             if(question[selectQuestion].typeQuestion == "Practica"){
                 if(question[selectQuestion].Level == 1){
-                   typeQuestion = "e0"; 
+                   typeQuestion = "e0"  + "_" + languageSelect; 
                 }else{
-                    typeQuestion = "e1"; 
+                    typeQuestion = "p2"; 
                 }
             
             }else if(question[selectQuestion].typeQuestion == "Torneo"){
-            typeQuestion = "t1";     
-            }  
-        }
-        
-        if(question[selectQuestion].audio){         
-            var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion + "_" + languageSelect
+            typeQuestion = "r" + question[selectQuestion].Level;     
+            }              
+            
+            var soundSelect = "q" + question[selectQuestion].Number +  "_" + "g" + question[selectQuestion].grade + "_" + typeQuestion
             console.log(typeQuestion);
 
             soundQuestion.src = "assets/sounds/" + soundSelect + ".mp3";
