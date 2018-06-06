@@ -576,14 +576,14 @@ position: absolute;
 
 .containerQuestionImage{
     position: absolute;
-    height: 60%;
+/*    height: 60%;*/
     padding: 0.5vw;
     transform: translate(-50%,-50%);
 }
 
 .containerQuestionImage img{
     position: relative;
-    height: 100% ;
+    height: 9% ;
 }
 
 
