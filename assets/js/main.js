@@ -1,5 +1,5 @@
 /*DIEGO ROJAS 2018*/
-alert("Actualización 7 de Junio del 2018");
+alert("Actualización 8 de Junio del 2018");
 selectQuestion = 0;
 //SOUNDS*****************
 var soundActive = true;
