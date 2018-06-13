@@ -574,16 +574,15 @@ position: absolute;
     z-index: 3;
 }
 
+/*CAMBIOS*/
 .containerQuestionImage{
-    position: absolute;
 /*    height: 60%;*/
     padding: 0.5vw;
-    transform: translate(-50%,-50%);
 }
 
 .containerQuestionImage img{
     position: relative;
-    height: 9% ;
+    width: 100% ;
 }
 
 
